@@ -21,6 +21,7 @@ class Address extends BaseModel
         'postcode',
         'city',
         'state',
+        'country',
         'country_id',
         'phone',
     ];

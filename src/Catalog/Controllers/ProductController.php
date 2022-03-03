@@ -9,6 +9,7 @@ use AvoRed\Framework\Database\Models\Product;
 use AvoRed\Framework\Tab\Tab;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -43,7 +44,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productRepository->paginate();
-
         return view('avored::catalog.product.index')
         ->with('products', $products);
     }
@@ -73,8 +73,14 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+
         $product = $this->productRepository->create($request->all());
         // $this->productRepository->saveProductDropdownOptions($request, $product);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $product->clearMediaCollection('product_upload');
+            $product->addMediaFromRequest('image')->toMediaCollection('product_upload');
+        }
 
         return redirect(route('admin.product.index'));
     }
@@ -108,8 +114,15 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
+
         $product->update($request->all());
         $this->productRepository->saveProductCategories($product, $request);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $product->clearMediaCollection('product_upload');
+            $product->addMediaFromRequest('image')->toMediaCollection('product_upload');
+        }
+
         return redirect(route('admin.product.index'));
     }
 

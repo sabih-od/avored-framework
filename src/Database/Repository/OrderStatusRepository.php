@@ -62,4 +62,43 @@ class OrderStatusRepository extends BaseRepository implements OrderStatusModelIn
     {
         return OrderStatus::whereIsDefault(1)->update(['is_default' => 0]);
     }
+
+    public function getUnpaidStatus()
+    {
+        $pendingStatus = null;
+        $pendingStatus = OrderStatus::where('name', 'unpaid')->latest()->first();
+        if(is_null($pendingStatus)) {
+            $pendingStatus = OrderStatus::create([
+                'name' => 'unpaid'
+            ]);
+        }
+
+        return $pendingStatus;
+    }
+
+    public function getPendingStatus()
+    {
+        $pendingStatus = null;
+        $pendingStatus = OrderStatus::where('name', 'pending')->latest()->first();
+        if(is_null($pendingStatus)) {
+            $pendingStatus = OrderStatus::create([
+                'name' => 'pending'
+            ]);
+        }
+
+        return $pendingStatus;
+    }
+
+    public function getCompleteStatus()
+    {
+        $completeStatus = null;
+        $completeStatus = OrderStatus::where('name', 'complete')->latest()->first();
+        if(is_null($completeStatus)) {
+            $completeStatus = OrderStatus::create([
+                'name' => 'complete'
+            ]);
+        }
+
+        return $completeStatus;
+    }
 }

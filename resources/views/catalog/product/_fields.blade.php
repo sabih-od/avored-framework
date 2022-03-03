@@ -18,6 +18,16 @@
             ></x-avored::form.input>
         </div>
     </div>
+    <div class="ml-3 w-1/2">
+        <div class="mt-3">
+            <x-avored::form.input
+                name="image"
+                type="file"
+                label="Image"
+            ></x-avored::form.input>
+            <img src="{{ $product->media_upload['url'] ?? '' }}" alt="" />
+        </div>
+    </div>
 </div>
 
 <div class="mt-3">

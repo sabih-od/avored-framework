@@ -9,7 +9,7 @@
             </div>
 
             <div class="mt-5 w-full">
-                <x-avored::form.form action="{{ route('admin.product.update', $product) }}" method="PUT">
+                <x-avored::form.form action="{{ route('admin.product.update', $product) }}" method="PUT" enctype="multipart/form-data">
                     @foreach ($tabs as $tab)
                     <div class="w-full border rounded">
                         <div class="p-4 border-b">

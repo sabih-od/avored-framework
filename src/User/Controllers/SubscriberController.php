@@ -22,7 +22,7 @@ class SubscriberController extends Controller
      * @param \AvoRed\Framework\Database\Repository\SubscriberRepository $repository
      */
     public function __construct(
-        SubscriberModelInterface $repository,
+        SubscriberModelInterface $repository
     ) {
         $this->subscriberRepository = $repository;
     }

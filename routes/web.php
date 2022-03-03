@@ -39,7 +39,7 @@ Route::middleware(['web'])
             ->name('login');
         Route::post('login', [LoginController::class, 'login'])
             ->name('login.post');
-        Route::post('logout', [LoginController::class, 'logout'])
+        Route::get('logout', [LoginController::class, 'logout'])
             ->name('logout');
 
         /***************** PASSWORD RESET *****************/
@@ -65,7 +65,9 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
     ->name('admin.')
     ->group(function () {
 
-        Route::get('', [DashboardController::class, 'index'])
+        // Route::get('', [DashboardController::class, 'index'])
+        //     ->name('dashboard');
+        Route::get('', [OrderController::class, 'index'])
             ->name('dashboard');
 
 
@@ -84,7 +86,10 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
         /***************** ORDER ROUTES *****************/
         Route::resource('order-status', OrderStatusController::class);
         Route::get('order', [OrderController::class, 'index'])->name('order.index');
+        Route::post('order/status', [OrderController::class, 'status'])->name('order.status');
+        Route::post('order/filter', [OrderController::class, 'filter'])->name('order.filter');
         Route::get('order/{order}', [OrderController::class, 'show'])->name('order.show');
+        
 
 
         /***************** CMS ROUTES *****************/

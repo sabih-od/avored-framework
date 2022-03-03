@@ -34,7 +34,7 @@
                     <a href="#" class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-red-500 rounded hover:text-white">
                         Settings
                     </a>
-                    <a href="#" class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-red-500 rounded hover:text-white">
+                    <a href="{{ route('admin.logout') }}" class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-red-500 rounded hover:text-white">
                         {{ __('avored::system.logout') }}
                     </a>
                 </div>

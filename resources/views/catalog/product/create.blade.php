@@ -9,63 +9,85 @@
             </div>
 
             <div class="mt-5 w-full">
-                <x-avored::form.form action="{{ route('admin.product.store') }}" method="POST">
+                <x-avored::form.form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
+                    <!--
+                        <div class="w-full border rounded">
+                            <div class="p-4 border-b">
+                                <div class="flex w-full">
+                                    <span class="text-lg text-red-500 font-semibold">
+                                        {{ __('avored::system.basic_info') }}
+                                    </span>
+                                    <span class="ml-auto">
 
-                    <div class="w-full border rounded">
-                        <div class="p-4 border-b">
-                            <div class="flex w-full">
-                                <span class="text-lg text-red-500 font-semibold">
-                                    {{ __('avored::system.basic_info') }}
-                                </span>
-                                <span class="ml-auto">
+                                    </span>
+                                </div>
 
-                                </span>
                             </div>
-
-                        </div>
-                        <div class="p-4">
-                            <div class="flex w-full">
-                                <div class="w-1/2">
-                                    <div class="mt-3">
-                                        <x-avored::form.input
-                                            name="name"
-                                            label="{{ __('avored::system.name') }}"
-                                        ></x-avored::form.input>
+                            <div class="p-4">
+                                <div class="flex w-full">
+                                    <div class="w-1/2">
+                                        <div class="mt-3">
+                                            <x-avored::form.input
+                                                name="name"
+                                                label="{{ __('avored::system.name') }}"
+                                            ></x-avored::form.input>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3 w-1/2">
+                                        <div class="mt-3">
+                                            <x-avored::form.input
+                                                name="slug"
+                                                label="{{ __('avored::system.slug') }}"
+                                            ></x-avored::form.input>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="ml-3 w-1/2">
-                                    <div class="mt-3">
-                                        <x-avored::form.input
-                                            name="slug"
-                                            label="{{ __('avored::system.slug') }}"
-                                        ></x-avored::form.input>
+
+                                <div class="flex w-full">
+                                    <div class="mt-3 w-full">
+                                        <x-avored::form.select
+                                            name="type"
+                                            label="{{ __('avored::system.type') }}"
+                                        >
+
+                                            <option value="">{{ __('avored::system.please_select') }}</option>
+                                            @foreach ($typeOptions as $typeValue => $typeLabel)
+                                                <option value="{{ $typeValue }}">
+                                                    {{ $typeLabel }}
+                                                </option>
+                                            @endforeach
+
+                                        </x-avored::form.select>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    -->
 
-                            <div class="flex w-full">
-                                <div class="mt-3 w-full">
-                                    <x-avored::form.select
-                                        name="type"
-                                        label="{{ __('avored::system.type') }}"
-                                    >
+                    @foreach ($tabs as $tab)
+                        <div class="w-full border rounded">
+                            <div class="p-4 border-b">
+                                <div class="flex w-full">
+                                    <span class="text-lg text-red-500 font-semibold">
+                                        {{ $tab->label() }}
+                                    </span>
+                                    <span class="ml-auto">
 
-                                        <option value="">{{ __('avored::system.please_select') }}</option>
-                                        @foreach ($typeOptions as $typeValue => $typeLabel)
-                                            <option value="{{ $typeValue }}">
-                                                {{ $typeLabel }}
-                                            </option>
-                                        @endforeach
-
-                                    </x-avored::form.select>
+                                    </span>
                                 </div>
+
+                            </div>
+                            <div class="p-4">
+                                @php
+                                    $path = $tab->view();
+                                @endphp
+                                @include($path)
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
                     <div class="mt-6 flex">
-                        <button type="submit"
-                            class="flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700">
+                        <button type="submit" class="flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700">
 
                             {{ __('avored::system.create') }}
                         </button>

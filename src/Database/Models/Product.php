@@ -4,10 +4,12 @@ namespace AvoRed\Framework\Database\Models;
 use AvoRed\Framework\Database\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends BaseModel
+class Product extends BaseModel implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
     /**
      * Tax Percentage Configuration Constant.
      * @var string
@@ -37,6 +39,14 @@ class Product extends BaseModel
         'length',
         'meta_title',
         'meta_description',
+    ];
+
+    protected $hidden = [
+        'media'
+    ];
+
+    protected $appends = [
+        'media_upload'
     ];
 
     /**
@@ -84,5 +94,14 @@ class Product extends BaseModel
     public function scopeWithoutVariation($query)
     {
         return $query->where('type', '!=', self::PRODUCT_TYPES_VARIATION);
+    }
+
+    public function getMediaUploadAttribute()
+    {
+        $mediaItems = $this->getMedia('product_upload');
+        return isset($mediaItems[0]) ? collect([
+            'url' => $mediaItems[0]->getFullUrl(),
+            'mime_type' => $mediaItems[0]->mime_type
+        ]) : collect([]);
     }
 }

@@ -98,12 +98,12 @@ class MenuProvider extends ServiceProvider
                 ->route('admin.attribute.index');
         });
 
-        Menu::make('cms', function (MenuItem $menu) {
-            $menu->label('avored::system.cms')
-                ->type(MenuItem::ADMIN)
-                ->icon('book-open')
-                ->route('#');
-        });
+        // Menu::make('cms', function (MenuItem $menu) {
+        //     $menu->label('avored::system.cms')
+        //         ->type(MenuItem::ADMIN)
+        //         ->icon('book-open')
+        //         ->route('#');
+        // });
         /** @var Builder $cmsMenu */
         $cmsMenu = Menu::get('cms');
         // $cmsMenu->subMenu('menu-group', function (MenuItem $menu) {
@@ -112,12 +112,12 @@ class MenuProvider extends ServiceProvider
         //         ->label('avored::system.menu')
         //         ->route('admin.menu-group.index');
         // });
-        $cmsMenu->subMenu('page', function (MenuItem $menu) {
-            $menu->key('page')
-                ->type(MenuItem::ADMIN)
-                ->label('avored::system.page')
-                ->route('admin.page.index');
-        });
+        // $cmsMenu->subMenu('page', function (MenuItem $menu) {
+        //     $menu->key('page')
+        //         ->type(MenuItem::ADMIN)
+        //         ->label('avored::system.page')
+        //         ->route('admin.page.index');
+        // });
         Menu::make('order', function (MenuItem $menu) {
             $menu->label('avored::system.order')
                 ->icon('dollar-sign')
@@ -192,12 +192,12 @@ class MenuProvider extends ServiceProvider
                 ->label('avored::system.staff')
                 ->route('admin.staff.index');
         });
-        $userMenu->subMenu('subscriber', function (MenuItem $menu) {
-            $menu->key('subscriber')
-                ->type(MenuItem::ADMIN)
-                ->label('avored::system.subscriber')
-                ->route('admin.subscriber.index');
-        });
+        // $userMenu->subMenu('subscriber', function (MenuItem $menu) {
+        //     $menu->key('subscriber')
+        //         ->type(MenuItem::ADMIN)
+        //         ->label('avored::system.subscriber')
+        //         ->route('admin.subscriber.index');
+        // });
 
         Menu::make('system', function (MenuItem $menu) {
             $menu->label('avored::system.system')
@@ -209,12 +209,12 @@ class MenuProvider extends ServiceProvider
         /** @var $systemMenu \AvoRed\Framework\Menu\MenuBuilder */
         $systemMenu = Menu::get('system');
         /** @var Builder $systemMenu */
-        $systemMenu->subMenu('configuration', function (MenuItem $menu) {
-            $menu->key('configuration')
-                ->type(MenuItem::ADMIN)
-                ->label('avored::system.configuration')
-                ->route('admin.configuration.index');
-        });
+        // $systemMenu->subMenu('configuration', function (MenuItem $menu) {
+        //     $menu->key('configuration')
+        //         ->type(MenuItem::ADMIN)
+        //         ->label('avored::system.configuration')
+        //         ->route('admin.configuration.index');
+        // });
 
         // $systemMenu->subMenu('currency', function (MenuItem $menu) {
         //     $menu->key('currency')

@@ -3,7 +3,7 @@
     x-transition.duration.300ms>
     <div class="bg-white text-red-700 h-16 p-2 flex items-center shadow">
         <img class="h-8 w-8 ml-4" src="{{ asset('/vendor/avored/images/logo_only.svg') }}" alt="AvoRed Ecommerce" />
-        <span class="font-bold ml-2">AvoRed</span>
+        <span class="font-bold ml-2">Social Hunter</span>
     </div>
 
     <div class="space-x-8 p-2 overflow-hidden">
