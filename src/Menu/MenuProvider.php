@@ -65,7 +65,7 @@ class MenuProvider extends ServiceProvider
         Menu::make('catalog', function (MenuItem $menu) {
             $menu->label('avored::system.catalog')
                 ->type(MenuItem::ADMIN)
-                ->icon('shopping-bag')
+                // ->icon('shopping-bag')
                 ->route('#');
         });
 
@@ -120,7 +120,7 @@ class MenuProvider extends ServiceProvider
         // });
         Menu::make('order', function (MenuItem $menu) {
             $menu->label('avored::system.order')
-                ->icon('dollar-sign')
+                // ->icon('dollar-sign')
                 ->type(MenuItem::ADMIN)
                 ->route('#');
         });
@@ -138,6 +138,28 @@ class MenuProvider extends ServiceProvider
                 ->type(MenuItem::ADMIN)
                 ->label('avored::system.order-status')
                 ->route('admin.order-status.index');
+        });
+
+        Menu::make('recipe', function (MenuItem $menu) {
+            $menu->key('recipe')->label('Recipe')->type(MenuItem::ADMIN)->route('#');
+        });
+        $recipeMenu = Menu::get('recipe');
+        $recipeMenu->subMenu('recipes_list', function (MenuItem $menu) {
+            $menu->key('recipes_list')
+                ->type(MenuItem::ADMIN)
+                ->label('Recipes List')
+                ->route('admin.recipe.index');
+        });
+
+        Menu::make('equipment', function (MenuItem $menu) {
+            $menu->key('equipment')->label('Equipment')->type(MenuItem::ADMIN)->route('#');
+        });
+        $recipeMenu = Menu::get('equipment');
+        $recipeMenu->subMenu('equipment_list', function (MenuItem $menu) {
+            $menu->key('equipment_list')
+                ->type(MenuItem::ADMIN)
+                ->label('Equipment List')
+                ->route('admin.equipment.index');
         });
 
         // Menu::make('report', function (MenuItem $menu) {
@@ -173,7 +195,7 @@ class MenuProvider extends ServiceProvider
         Menu::make('user', function (MenuItem $menu) {
             $menu->label('avored::system.user')
             ->type(MenuItem::ADMIN)
-                ->icon('users')
+//                ->icon('users')
                 ->route('#');
         });
         /** @var $userMenu \AvoRed\Framework\Menu\MenuBuilder */
@@ -202,7 +224,7 @@ class MenuProvider extends ServiceProvider
         Menu::make('system', function (MenuItem $menu) {
             $menu->label('avored::system.system')
                 ->type(MenuItem::ADMIN)
-                ->icon('settings')
+//                ->icon('settings')
                 ->route('#');
         });
 

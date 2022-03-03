@@ -10,6 +10,7 @@ use AvoRed\Framework\Database\Contracts\CategoryModelInterface;
 use AvoRed\Framework\Database\Contracts\ConfigurationModelInterface;
 use AvoRed\Framework\Database\Contracts\CustomerModelInterface;
 use AvoRed\Framework\Database\Contracts\DocumentModelInterface;
+use AvoRed\Framework\Database\Contracts\EquipmentModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderProductModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderStatusModelInterface;
@@ -19,6 +20,7 @@ use AvoRed\Framework\Database\Contracts\ProductModelInterface;
 use AvoRed\Framework\Database\Contracts\PropertyModelInterface;
 use AvoRed\Framework\Database\Contracts\RoleModelInterface;
 use AvoRed\Framework\Database\Contracts\SubscriberModelInterface;
+use AvoRed\Framework\Database\Contracts\RecipeModelInterface;
 use AvoRed\Framework\Database\Repository\AddressRepository;
 use AvoRed\Framework\Database\Repository\AdminUserRepository;
 use AvoRed\Framework\Database\Repository\AttributeRepository;
@@ -27,6 +29,7 @@ use AvoRed\Framework\Database\Repository\CategoryRepository;
 use AvoRed\Framework\Database\Repository\ConfigurationRepository;
 use AvoRed\Framework\Database\Repository\CustomerRepository;
 use AvoRed\Framework\Database\Repository\DocumentRepository;
+use AvoRed\Framework\Database\Repository\EquipmentRepository;
 use AvoRed\Framework\Database\Repository\OrderProductRepository;
 use AvoRed\Framework\Database\Repository\OrderRepository;
 use AvoRed\Framework\Database\Repository\OrderStatusRepository;
@@ -36,6 +39,7 @@ use AvoRed\Framework\Database\Repository\ProductRepository;
 use AvoRed\Framework\Database\Repository\PropertyRepository;
 use AvoRed\Framework\Database\Repository\RoleRepository;
 use AvoRed\Framework\Database\Repository\SubscriberRepository;
+use AvoRed\Framework\Database\Repository\RecipeRepository;
 use Illuminate\Support\ServiceProvider;
 
 class ModelsProvider extends ServiceProvider
@@ -68,6 +72,8 @@ class ModelsProvider extends ServiceProvider
         PermissionModelInterface::class => PermissionRepository::class,
         RoleModelInterface::class => RoleRepository::class,
         SubscriberModelInterface::class => SubscriberRepository::class,
+        RecipeModelInterface::class => RecipeRepository::class,
+        EquipmentModelInterface::class => EquipmentRepository::class,
     ];
 
     /**

@@ -1,3 +1,4 @@
+
 <div class="lg:static bg-red-500 min-h-screen bottom-0 sm:w-16 text-white h-full "
     :class="isSideBarOpen ? 'lg:w-64 z-10' : 'lg:w-16'"
     x-transition.duration.300ms>
@@ -8,6 +9,7 @@
 
     <div class="space-x-8 p-2 overflow-hidden">
         <nav aria-label="Main" class="flex-1 px-2 py-4 space-y-2">
+
             @foreach ($adminMenus as $adminMenu)
                 <div x-data="{ isActive: false, open: false}" class="space-x-2">
                     <a href="#" x-on:click="$event.preventDefault(); open = !open"
@@ -15,7 +17,7 @@
                         role="button" aria-haspopup="true"
                         :aria-expanded="(open || isActive) ? 'true' : 'false'">
                         <span aria-hidden="true">
-                            <i class="h-5 w-5" data-feather="{{ $adminMenu->icon() }}"></i>
+                            <i class="h-5 w-5" @if($adminMenu->icon())data-feather="{{ $adminMenu->icon() }}@endif"></i>
                         </span>
                         <span class="ml-3 text-sm">{{ $adminMenu->label() }}</span>
                         <span class="ml-auto" aria-hidden="true">
@@ -27,13 +29,14 @@
                         </span>
                     </a>
                     <div role="menu" x-show="open" class="mt-2 ml-2 space-y-2 px-8" aria-label="{{ $adminMenu->label() }}">
-                        @foreach ($adminMenu->subMenu as $subMenu)
-                            <a href="{{ route($subMenu->route(), $subMenu->params()) }}" role="menuitem"
-                                class="block p-2 text-sm text-white transition-colors duration-200 rounded-md dark:text-white dark:hover:text-light hover:text-white">
-                                {{ $subMenu->label() }}
-                            </a>
-                        @endforeach
-
+                        @if ($adminMenu->subMenu > 0)
+                            @foreach ($adminMenu->subMenu as $subMenu)
+                                <a href="{{ route($subMenu->route(), $subMenu->params()) }}" role="menuitem"
+                                    class="block p-2 text-sm text-white transition-colors duration-200 rounded-md dark:text-white dark:hover:text-light hover:text-white">
+                                    {{ $subMenu->label() }}
+                                </a>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             @endforeach

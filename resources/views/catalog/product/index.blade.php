@@ -54,7 +54,8 @@
                                 <x-avored::table.cell>
                                     <div class="flex">
                                         <x-avored::link url="{{ route('admin.product.edit', $product) }}">
-                                            <i class="w-5 h-5" data-feather="edit"></i>
+                                            <i class="fa fa-pencil"></i>
+                                            <!-- data-feather="edit" -->
                                         </x-avored::link>
                                         <span class="mx-2">|</span>
                                         <x-avored::link
@@ -65,7 +66,8 @@
                                                 '{{ route('admin.product.destroy', $product) }}'
                                             )"
                                             url="{{ route('admin.product.destroy', $product) }}">
-                                            <i class="w-5 h-5" data-feather="trash"></i>
+                                            <!-- <i class="w-5 h-5" data-feather="trash"></i> -->
+                                            <i class="fa fa-trash"></i>
                                             <x-avored::form.form
                                                 id="product-destory-{{ $product->id }}"
                                                 method="delete"

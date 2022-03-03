@@ -138,7 +138,8 @@
                                 <x-avored::table.cell>
                                     <div class="flex">
                                         <x-avored::link url="{{ route('admin.order.show', $order) }}">
-                                            <i class="w-5 h-5" data-feather="eye"></i>
+                                            <i class="fa fa-eye"></i>
+                                            <!-- data-feather="eye" -->
                                         </x-avored::link>
 
                                         <style>
