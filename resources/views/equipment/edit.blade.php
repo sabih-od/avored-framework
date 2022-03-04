@@ -9,16 +9,17 @@
             </div>
 
             <div class="mt-5 w-full">
-                <x-avored::form.form action="{{ route('admin.equipment.update', $equipment) }}" method="PUT" enctype="multipart/form-data">
+                <x-avored::form.form action="{{ route('admin.equipment.update', $equipment) }}" method="PUT"
+                                     enctype="multipart/form-data">
 
                     <div class="flex w-full">
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                    name="title"
-                                    autofocus
-                                    value="{{ $equipment->title ?? '' }}"
-                                    label="Title"
+                                        name="title"
+                                        autofocus
+                                        value="{{ $equipment->title ?? '' }}"
+                                        label="Title"
                                 ></x-avored::form.input>
                             </div>
                         </div>
@@ -27,11 +28,12 @@
                     <div class="flex w-full">
                         <div class="w-1/2">
                             <div class="mt-3">
-                                <x-avored::form.easymde
-                                    name="content"
-                                    value="{{ $equipment->content ?? '' }}"
-                                    label="Content"
-                                ></x-avored::form.easymde>
+                                <textarea
+                                        class="avored-input"
+                                        rows="5"
+                                        name="content"
+                                        label="Content"
+                                >{{ $equipment->content ?? '' }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -40,17 +42,18 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                    name="image"
-                                    type="file"
-                                    label="Image"
+                                        name="image"
+                                        type="file"
+                                        label="Image"
                                 ></x-avored::form.input>
-                                <img src="{{ $equipment->media_upload['url'] ?? '' }}" alt="" />
+                                <img src="{{ $equipment->media_upload['url'] ?? '' }}" alt=""/>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-6 flex">
-                        <button type="submit" class="flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700">
+                        <button type="submit"
+                                class="flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700">
                             Update
                         </button>
 
