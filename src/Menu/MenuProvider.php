@@ -151,6 +151,17 @@ class MenuProvider extends ServiceProvider
                 ->route('admin.recipe.index');
         });
 
+        Menu::make('equipment', function (MenuItem $menu) {
+            $menu->key('equipment')->label('Equipment')->type(MenuItem::ADMIN)->route('#');
+        });
+        $recipeMenu = Menu::get('equipment');
+        $recipeMenu->subMenu('equipment_list', function (MenuItem $menu) {
+            $menu->key('equipment_list')
+                ->type(MenuItem::ADMIN)
+                ->label('Equipment List')
+                ->route('admin.equipment.index');
+        });
+
         // Menu::make('report', function (MenuItem $menu) {
         //     $menu->label('avored::system.admin_menus.report')
         //         ->type(MenuItem::ADMIN)
@@ -184,7 +195,7 @@ class MenuProvider extends ServiceProvider
         Menu::make('user', function (MenuItem $menu) {
             $menu->label('avored::system.user')
             ->type(MenuItem::ADMIN)
-                ->icon('users')
+//                ->icon('users')
                 ->route('#');
         });
         /** @var $userMenu \AvoRed\Framework\Menu\MenuBuilder */
@@ -213,7 +224,7 @@ class MenuProvider extends ServiceProvider
         Menu::make('system', function (MenuItem $menu) {
             $menu->label('avored::system.system')
                 ->type(MenuItem::ADMIN)
-                ->icon('settings')
+//                ->icon('settings')
                 ->route('#');
         });
 

@@ -19,19 +19,20 @@
                 <!-- {{ csrf_field() }} -->
                 <!-- <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="flex w-full">
-                        <input 
-                            class="mr-2 appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                            type="text" 
+                        <input
+                            class="mr-2 appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text"
                             placeholder="Order Id"
                             name="order_id">
-                        
-                        <input class="mr-2 appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white" 
-                            type="text" 
+
+                        <input class="mr-2 appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            type="text"
                             placeholder="Name"
                             name="name">
 
-                        <input class="mr-2 appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white" 
-                            type="text" 
+                        <input class="mr-2 appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            type="text"
+>>>>>>> origin/hotfix
                             placeholder="Email"
                             name="email">
 
@@ -43,14 +44,14 @@
                         </select>
                     </div>
                     <div class="flex w-full mt-3">
-                        <input 
+                        <input
                             class="mr-2 appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
                             type="date" 
                             placeholder="Date From"
                             name="date_from">
                         <input 
                             class="mr-2 appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                            type="date" 
+                            type="date"
                             placeholder="Date To"
                             name="date_to">
 
@@ -94,7 +95,7 @@
                                 <x-avored::table.cell>
                                     {{ $recipe->user->name ?? 'Admin' }}
                                 </x-avored::table.cell>
-                                
+
                                 <x-avored::table.cell>
                                     {{ $recipe->name }}
                                 </x-avored::table.cell>
@@ -113,7 +114,7 @@
                                             <i class="fa fa-pencil"></i>
                                         </x-avored::link>
 
-                                    
+
                                     <!--
                                             <style>
                                                 .group_status {
@@ -138,10 +139,10 @@
                                                     padding: 5px 10px;
                                                     cursor: pointer;
                                                 }
-                                                
+
                                             </style>
                                         <form action="{{ route('admin.order.status') }}" method="POST">
-                                            @csrf 
+                                            @csrf
                                             <div class="group_status">
                                                 <input type="hidden" name="status" value="pending" />
                                                 <input type="hidden" name="order_id" value="" />
@@ -166,7 +167,7 @@
                     </x-slot>
                 </x-avored::table>
                 <div class="w-full">
-                   
+
                 </div>
             </div>
         </div>

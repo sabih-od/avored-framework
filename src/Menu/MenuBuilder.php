@@ -118,7 +118,6 @@ class MenuBuilder
      */
     public function adminMenus()
     {
-        // dd($this->all(true));
         return $adminMenus = $this->all(true);
 
 

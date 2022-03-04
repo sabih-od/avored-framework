@@ -9,7 +9,7 @@
 
     <div class="space-x-8 p-2 overflow-hidden">
         <nav aria-label="Main" class="flex-1 px-2 py-4 space-y-2">
-            
+
             @foreach ($adminMenus as $adminMenu)
                 <div x-data="{ isActive: false, open: false}" class="space-x-2">
                     <a href="#" x-on:click="$event.preventDefault(); open = !open"
@@ -17,7 +17,7 @@
                         role="button" aria-haspopup="true"
                         :aria-expanded="(open || isActive) ? 'true' : 'false'">
                         <span aria-hidden="true">
-                            <i class="h-5 w-5" data-feather="{{ $adminMenu->icon() }}"></i>
+                            <i class="h-5 w-5" @if($adminMenu->icon())data-feather="{{ $adminMenu->icon() }}@endif"></i>
                         </span>
                         <span class="ml-3 text-sm">{{ $adminMenu->label() }}</span>
                         <span class="ml-auto" aria-hidden="true">

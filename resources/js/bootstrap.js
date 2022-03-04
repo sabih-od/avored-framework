@@ -93,7 +93,6 @@ document.addEventListener('alpine:init', () => {
 Alpine.data('app', () => ({
     showConfirmationModal: false,
     message: {},
-    showConfirmationModal: false,
     modal: {},
     openAlertBox: false,
     alertBackgroundColor: '',

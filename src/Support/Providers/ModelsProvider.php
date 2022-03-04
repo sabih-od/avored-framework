@@ -10,6 +10,7 @@ use AvoRed\Framework\Database\Contracts\CategoryModelInterface;
 use AvoRed\Framework\Database\Contracts\ConfigurationModelInterface;
 use AvoRed\Framework\Database\Contracts\CustomerModelInterface;
 use AvoRed\Framework\Database\Contracts\DocumentModelInterface;
+use AvoRed\Framework\Database\Contracts\EquipmentModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderProductModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderStatusModelInterface;
@@ -28,6 +29,7 @@ use AvoRed\Framework\Database\Repository\CategoryRepository;
 use AvoRed\Framework\Database\Repository\ConfigurationRepository;
 use AvoRed\Framework\Database\Repository\CustomerRepository;
 use AvoRed\Framework\Database\Repository\DocumentRepository;
+use AvoRed\Framework\Database\Repository\EquipmentRepository;
 use AvoRed\Framework\Database\Repository\OrderProductRepository;
 use AvoRed\Framework\Database\Repository\OrderRepository;
 use AvoRed\Framework\Database\Repository\OrderStatusRepository;
@@ -71,6 +73,7 @@ class ModelsProvider extends ServiceProvider
         RoleModelInterface::class => RoleRepository::class,
         SubscriberModelInterface::class => SubscriberRepository::class,
         RecipeModelInterface::class => RecipeRepository::class,
+        EquipmentModelInterface::class => EquipmentRepository::class,
     ];
 
     /**

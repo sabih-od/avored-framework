@@ -5,6 +5,7 @@ use AvoRed\Framework\Catalog\Controllers\CategoryController;
 use AvoRed\Framework\Catalog\Controllers\ProductController;
 use AvoRed\Framework\Catalog\Controllers\PropertyController;
 use AvoRed\Framework\Cms\Controllers\PageController;
+use AvoRed\Framework\Equipment\Controllers\EquipmentController;
 use AvoRed\Framework\Order\Controllers\OrderController;
 use AvoRed\Framework\Order\Controllers\OrderStatusController;
 use AvoRed\Framework\System\Controllers\DashboardController;
@@ -90,16 +91,14 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
         Route::post('order/status', [OrderController::class, 'status'])->name('order.status');
         Route::post('order/filter', [OrderController::class, 'filter'])->name('order.filter');
         Route::get('order/{order}', [OrderController::class, 'show'])->name('order.show');
-        
 
+
+        /***************** Recipes Routes ****************/
         Route::resource('recipe', RecipeController::class);
-        // Route::get('recipe/create', function() {
-        //     return view('avored::recipe.create');
-        // });
-        // Route::get('recipe', function() {
-        //     return view('avored::recipe.index');
-        // });
-        
+
+        /***************** Equipment Routes ****************/
+        Route::resource('equipment', EquipmentController::class);
+
 
         /***************** CMS ROUTES *****************/
         Route::resource('page', PageController::class);
