@@ -54,7 +54,7 @@
                             Update
                         </button>
 
-                        <x-avored::link url="" class="ml-3" style="button-default">
+                        <x-avored::link url="{{ route('admin.equipment.index') }}" class="ml-3" style="button-default">
                             Cancel
                         </x-avored::link>
                     </div>

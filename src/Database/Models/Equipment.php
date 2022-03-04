@@ -1,6 +1,8 @@
 <?php
+
 namespace AvoRed\Framework\Database\Models;
 
+use App\Models\Review;
 use AvoRed\Framework\Database\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\HasMedia;
@@ -9,11 +11,12 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Equipment extends BaseModel implements HasMedia
 {
     use HasFactory, InteractsWithMedia, UuidTrait;
+
     /**
      * Tax Percentage Configuration Constant.
      * @var string
      */
-    
+
     /**
      * The attributes that are mass assignable.
      * @var array
@@ -24,7 +27,8 @@ class Equipment extends BaseModel implements HasMedia
     ];
 
     protected $hidden = [
-        'media'
+        'media',
+        'deleted_at'
     ];
 
     protected $appends = [
@@ -38,5 +42,11 @@ class Equipment extends BaseModel implements HasMedia
             'url' => $mediaItems[0]->getFullUrl(),
             'mime_type' => $mediaItems[0]->mime_type
         ]) : collect([]);
+    }
+
+
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'reviewable')->whereNull('deleted_at');
     }
 }

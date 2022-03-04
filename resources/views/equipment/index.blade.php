@@ -47,9 +47,11 @@
                                             <x-avored::link url="{{ route('admin.equipment.edit', $item) }}">
                                                 <i class="w-5 h-5" data-feather="edit"></i>
                                             </x-avored::link>
-                                            <x-avored::link url="{{ route('admin.equipment.destroy', $item) }}">
-                                                <i class="w-5 h-5" data-feather="trash-2"></i>
-                                            </x-avored::link>
+                                            <x-avored::form.form action="{{ route('admin.equipment.destroy', $item) }}" method="DELETE">
+                                                <button type="submit">
+                                                    <i class="w-5 h-5" data-feather="trash-2"></i>
+                                                </button>
+                                            </x-avored::form.form>
                                         </div>
                                     </x-avored::table.cell>
 

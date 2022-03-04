@@ -9,6 +9,7 @@ use AvoRed\Framework\Equipment\Requests\EquipmentCreateRequest;
 use AvoRed\Framework\Equipment\Requests\EquipmentUpdateRequest;
 use Illuminate\Http\Response;
 use \Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class EquipmentController extends Controller
 {
@@ -91,6 +92,21 @@ class EquipmentController extends Controller
             $equipment->clearMediaCollection('equipment_upload');
             $equipment->addMediaFromRequest('image')->toMediaCollection('equipment_upload');
         }
+
+        return redirect(route('admin.equipment.index'));
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Equipment $equipment
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Equipment $equipment)
+    {
+        if(Auth::check())
+            $equipment->delete();
 
         return redirect(route('admin.equipment.index'));
     }
