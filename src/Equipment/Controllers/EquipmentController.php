@@ -3,6 +3,7 @@
 namespace AvoRed\Framework\Equipment\Controllers;
 
 use AvoRed\Framework\Database\Contracts\EquipmentModelInterface;
+use AvoRed\Framework\Database\Contracts\ReviewModelInterface;
 use AvoRed\Framework\Database\Models\Equipment;
 use AvoRed\Framework\Database\Repository\EquipmentRepository;
 use AvoRed\Framework\Equipment\Requests\EquipmentCreateRequest;
@@ -18,13 +19,16 @@ class EquipmentController extends Controller
      */
     protected $repository;
 
+    protected $reviews;
+
     /**
      *
      * @param EquipmentRepository $repository
      */
-    public function __construct(EquipmentModelInterface $repository)
+    public function __construct(EquipmentModelInterface $repository, ReviewModelInterface $reviews)
     {
         $this->repository = $repository;
+        $this->reviews = $reviews;
     }
 
     /**
@@ -105,9 +109,21 @@ class EquipmentController extends Controller
      */
     public function destroy(Equipment $equipment)
     {
-        if(Auth::check())
+        if (Auth::check())
             $equipment->delete();
 
         return redirect(route('admin.equipment.index'));
+    }
+
+    /**
+     * @param $id
+     */
+    public function deleteReview($id)
+    {
+        $item = $this->reviews->find($id);
+        if (Auth::check())
+            $item->delete();
+
+        return redirect(route('admin.equipment.edit', $item->reviewable_id));
     }
 }

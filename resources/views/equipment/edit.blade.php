@@ -3,7 +3,7 @@
         <div class="p-5">
             <div class="flex w-full">
                 <h2 class="text-2xl text-red-700 font-semibold">
-                    Edit Recipe
+                    Edit Equipment
                 </h2>
 
             </div>
@@ -18,7 +18,7 @@
                                 <x-avored::form.input
                                         name="title"
                                         autofocus
-                                        value="{{ $equipment->title ?? '' }}"
+                                        value="{!! $equipment->title ?? '' !!}"
                                         label="Title"
                                 ></x-avored::form.input>
                             </div>
@@ -62,6 +62,45 @@
                         </x-avored::link>
                     </div>
                 </x-avored::form.form>
+            </div>
+        </div>
+
+        <div class="p-5">
+            <div class="flex w-full">
+                <h2 class="text-2xl text-red-700 font-semibold">
+                    Equipment Reviews
+                </h2>
+
+            </div>
+
+            <div class="mt-5 w-full">
+                @forelse($equipment->reviews as $review)
+                    <div class="userReview mb-3">
+                        <img src="{{ url('storage/uploads/'.$review->user->profile_image) }}"
+                             onerror="event.target.src=`{{ url('assets/images/ph-avatar.jpg') }}`"
+                             class="img-fluid rounded-circle" alt="img">
+                        <div class="reviewContent">
+                            <h5>{{ $review->user->name }}
+                                – {{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }} </h5>
+                            <div class="stars">
+                                <span class="fa fa-star {{ $review->rating >= 1 ? 'checked': 'd-none' }}"></span>
+                                <span class="fa fa-star {{ $review->rating >= 2 ? 'checked': 'd-none' }}"></span>
+                                <span class="fa fa-star {{ $review->rating >= 3 ? 'checked': 'd-none' }}"></span>
+                                <span class="fa fa-star {{ $review->rating >= 4 ? 'checked': 'd-none' }}"></span>
+                                <span class="fa fa-star {{ $review->rating == 5 ? 'checked': 'd-none' }}"></span>
+                            </div>
+                            <p>{{ $review->content }}</p>
+                            <x-avored::form.form action="{{ route('admin.equipment-review.delete', $review->id) }}"
+                                                 method="DELETE">
+                                <button class="bg-red-500 text-white px-2 py-1 rounded shadow-sm hover:bg-red-600 text-xs"
+                                        type="submit">Delete
+                                </button>
+                            </x-avored::form.form>
+                        </div>
+                    </div>
+                @empty
+                    <p>No Reviews</p>
+                @endforelse
             </div>
         </div>
 

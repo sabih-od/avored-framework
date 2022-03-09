@@ -6,6 +6,45 @@
 .avored-input {
     @apply w-full px-3 py-2 ring-gray-300 ring-1 rounded shadow-sm appearance-none text-gray-700;
 }
-.avored-input:hover, .avored-input:active , .avored-input:focus {
+
+.avored-input:hover, .avored-input:active, .avored-input:focus {
     @apply ring-red-500 outline-none;
 }
+
+.d-none {
+    display: none !important;
+}
+
+.rounded-circle {
+    border-radius: 50%!important;
+}
+
+/* User Review Item Design */
+.userReview {
+    display: flex;
+    align-items: flex-start;
+}
+
+.userReview img {
+    width: 50px;
+    height: 50px;
+}
+.reviewContent {
+    padding-left: 15px;
+}
+
+.reviewContent p, .reviewContent h5 {
+    color: #030303;
+    margin-bottom: 8px;
+    font-size: 0.9333em;
+    font-weight: 600;
+}
+
+.reviewContent .stars {
+    color: #ff912c;
+}
+
+.reviewContent .stars > .checked {
+    color: yellow;
+}
+/* User Review Item Design */

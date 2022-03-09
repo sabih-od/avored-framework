@@ -140,6 +140,22 @@ class MenuProvider extends ServiceProvider
                 ->route('admin.order-status.index');
         });
 
+        Menu::make('post', function (MenuItem $menu) {
+            $menu->label('Post')
+                // ->icon('dollar-sign')
+                ->type(MenuItem::ADMIN)
+                ->route('#');
+        });
+        /** @var Builder $postMenu */
+        $postMenu = Menu::get('post');
+
+        $postMenu->subMenu('post', function (MenuItem $menu) {
+            $menu->key('post')
+                ->type(MenuItem::ADMIN)
+                ->label('Post List')
+                ->route('admin.post.index');
+        });
+
         Menu::make('recipe', function (MenuItem $menu) {
             $menu->key('recipe')->label('Recipe')->type(MenuItem::ADMIN)->route('#');
         });

@@ -16,8 +16,10 @@ use AvoRed\Framework\Database\Contracts\OrderProductModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderStatusModelInterface;
 use AvoRed\Framework\Database\Contracts\PageModelInterface;
 use AvoRed\Framework\Database\Contracts\PermissionModelInterface;
+use AvoRed\Framework\Database\Contracts\PostModelInterface;
 use AvoRed\Framework\Database\Contracts\ProductModelInterface;
 use AvoRed\Framework\Database\Contracts\PropertyModelInterface;
+use AvoRed\Framework\Database\Contracts\ReviewModelInterface;
 use AvoRed\Framework\Database\Contracts\RoleModelInterface;
 use AvoRed\Framework\Database\Contracts\SubscriberModelInterface;
 use AvoRed\Framework\Database\Contracts\RecipeModelInterface;
@@ -35,8 +37,10 @@ use AvoRed\Framework\Database\Repository\OrderRepository;
 use AvoRed\Framework\Database\Repository\OrderStatusRepository;
 use AvoRed\Framework\Database\Repository\PageRepository;
 use AvoRed\Framework\Database\Repository\PermissionRepository;
+use AvoRed\Framework\Database\Repository\PostRepository;
 use AvoRed\Framework\Database\Repository\ProductRepository;
 use AvoRed\Framework\Database\Repository\PropertyRepository;
+use AvoRed\Framework\Database\Repository\ReviewRepository;
 use AvoRed\Framework\Database\Repository\RoleRepository;
 use AvoRed\Framework\Database\Repository\SubscriberRepository;
 use AvoRed\Framework\Database\Repository\RecipeRepository;
@@ -74,6 +78,8 @@ class ModelsProvider extends ServiceProvider
         SubscriberModelInterface::class => SubscriberRepository::class,
         RecipeModelInterface::class => RecipeRepository::class,
         EquipmentModelInterface::class => EquipmentRepository::class,
+        ReviewModelInterface::class => ReviewRepository::class,
+        PostModelInterface::class => PostRepository::class,
     ];
 
     /**

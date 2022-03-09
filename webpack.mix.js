@@ -29,3 +29,5 @@ mix.js('resources/js/app.js', filePath + 'js/app.js')
     .postCss('resources/css/app.css', filePath + 'css/app.css', [
         require("tailwindcss"),
     ]);
+
+mix.js('resources/js/vue-app.js', filePath + 'js/v-app.js').vue();

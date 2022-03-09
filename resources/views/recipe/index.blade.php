@@ -113,52 +113,12 @@
                                         <x-avored::link url="{{ route('admin.recipe.edit', $recipe) }}">
                                             <i class="fa fa-pencil"></i>
                                         </x-avored::link>
-
-
-                                    <!--
-                                            <style>
-                                                .group_status {
-                                                    display: flex;
-                                                    margin-left: 15px;
-                                                }
-                                                .group_status input[type="radio"] {
-                                                    display: none;
-                                                }
-                                                .group_status > div > .group_label {
-                                                    background-color: #757678!important;
-                                                    color: #fff;
-                                                    padding: 5px 10px;
-                                                    cursor: pointer;
-                                                }
-                                                .group_status > div > input[type="radio"]:checked ~ .group_label {
-                                                    background-color: #374151!important;
-                                                }
-                                                .classic_anchor {
-                                                    background-color: #757678!important;
-                                                    color: #fff;
-                                                    padding: 5px 10px;
-                                                    cursor: pointer;
-                                                }
-
-                                            </style>
-                                        <form action="{{ route('admin.order.status') }}" method="POST">
-                                            @csrf
-                                            <div class="group_status">
-                                                <input type="hidden" name="status" value="pending" />
-                                                <input type="hidden" name="order_id" value="" />
-                                                <button class="classic_anchor" type="submit">Pending</button>
-                                            </div>
-                                        </form>
-
-                                        <form action="{{ route('admin.order.status') }}" method="POST">
-                                            @csrf
-                                            <div class="group_status">
-                                                <input type="hidden" name="status" value="complete" />
-                                                <input type="hidden" name="order_id" value="" />
-                                                <button class="classic_anchor" type="submit">Complete</button>
-                                            </div>
-                                        </form>
-                                    -->
+                                        <x-avored::form.form action="{{ route('admin.recipe.destroy', $recipe) }}"
+                                                             method="DELETE">
+                                            <button class=" ml-3"
+                                                    type="submit"><i class="fa fa-trash"></i>
+                                            </button>
+                                        </x-avored::form.form>
                                     </div>
                                 </x-avored::table.cell>
 

@@ -99,13 +99,13 @@ class RecipeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param Product $product
-     * @return \Illuminate\Http\Response
+     * @param Recipe $recipe
+     * @return mixed
      */
-    public function destroy(Product $product)
+    public function destroy(Recipe $recipe)
     {
-        
+        $recipe->clearMediaCollection('recipe_upload');
+        $recipe->delete();
+        return redirect(route('admin.recipe.index'));
     }
 }
