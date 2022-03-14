@@ -7,10 +7,12 @@ use AvoRed\Framework\Database\Contracts\AdminUserModelInterface;
 use AvoRed\Framework\Database\Contracts\AttributeModelInterface;
 use AvoRed\Framework\Database\Contracts\CartProductModelInterface;
 use AvoRed\Framework\Database\Contracts\CategoryModelInterface;
+use AvoRed\Framework\Database\Contracts\ChannelModelInterface;
 use AvoRed\Framework\Database\Contracts\ConfigurationModelInterface;
 use AvoRed\Framework\Database\Contracts\CustomerModelInterface;
 use AvoRed\Framework\Database\Contracts\DocumentModelInterface;
 use AvoRed\Framework\Database\Contracts\EquipmentModelInterface;
+use AvoRed\Framework\Database\Contracts\GroupChatModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderProductModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderStatusModelInterface;
@@ -28,10 +30,12 @@ use AvoRed\Framework\Database\Repository\AdminUserRepository;
 use AvoRed\Framework\Database\Repository\AttributeRepository;
 use AvoRed\Framework\Database\Repository\CartProductRepository;
 use AvoRed\Framework\Database\Repository\CategoryRepository;
+use AvoRed\Framework\Database\Repository\ChannelRepository;
 use AvoRed\Framework\Database\Repository\ConfigurationRepository;
 use AvoRed\Framework\Database\Repository\CustomerRepository;
 use AvoRed\Framework\Database\Repository\DocumentRepository;
 use AvoRed\Framework\Database\Repository\EquipmentRepository;
+use AvoRed\Framework\Database\Repository\GroupChatRepository;
 use AvoRed\Framework\Database\Repository\OrderProductRepository;
 use AvoRed\Framework\Database\Repository\OrderRepository;
 use AvoRed\Framework\Database\Repository\OrderStatusRepository;
@@ -80,6 +84,8 @@ class ModelsProvider extends ServiceProvider
         EquipmentModelInterface::class => EquipmentRepository::class,
         ReviewModelInterface::class => ReviewRepository::class,
         PostModelInterface::class => PostRepository::class,
+        GroupChatModelInterface::class => GroupChatRepository::class,
+        ChannelModelInterface::class => ChannelRepository::class,
     ];
 
     /**

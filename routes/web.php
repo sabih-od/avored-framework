@@ -15,6 +15,7 @@ use AvoRed\Framework\User\Controllers\StaffController;
 use AvoRed\Framework\User\Controllers\SubscriberController;
 use AvoRed\Framework\Recipe\Controllers\RecipeController;
 use AvoRed\Framework\Post\Controllers\PostController;
+use AvoRed\Framework\GroupChat\Controllers\GroupChatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -100,6 +101,9 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
         /***************** Equipment Routes ****************/
         Route::resource('equipment', EquipmentController::class);
         Route::delete('equipment-review/{id}', [EquipmentController::class, 'deleteReview'])->name('equipment-review.delete');
+
+        /***************** Group Chat Routes ****************/
+        Route::resource('group-chat', GroupChatController::class);
 
         /***************** Post Routes ****************/
         Route::get('post', [PostController::class, 'index'])->name('post.index');

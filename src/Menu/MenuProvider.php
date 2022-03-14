@@ -237,6 +237,22 @@ class MenuProvider extends ServiceProvider
         //         ->route('admin.subscriber.index');
         // });
 
+        Menu::make('group_chat', function (MenuItem $menu) {
+            $menu->label('Group Chat')
+                ->type(MenuItem::ADMIN)
+//                ->icon('users')
+                ->route('#');
+        });
+        $groupChatMenu = Menu::get('group_chat');
+        $groupChatMenu->subMenu('group_list', function (MenuItem $menu) {
+            $menu->key('group_list')
+                ->type(MenuItem::ADMIN)
+                ->label("List")
+                ->route('admin.group-chat.index');
+        });
+
+
+
         Menu::make('system', function (MenuItem $menu) {
             $menu->label('avored::system.system')
                 ->type(MenuItem::ADMIN)
