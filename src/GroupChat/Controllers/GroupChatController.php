@@ -61,7 +61,7 @@ class GroupChatController extends Controller
     public function store(GroupCreateRequest $request)
     {
         $channel = $this->channel->create([
-            'participants' => json_encode([]),
+            'participants' => [],
             'chat_type' => 'group'
         ]);
 
