@@ -16,6 +16,7 @@ use AvoRed\Framework\User\Controllers\SubscriberController;
 use AvoRed\Framework\Recipe\Controllers\RecipeController;
 use AvoRed\Framework\Post\Controllers\PostController;
 use AvoRed\Framework\GroupChat\Controllers\GroupChatController;
+use AvoRed\Framework\MapData\Controllers\MapDataController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -104,6 +105,9 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
 
         /***************** Group Chat Routes ****************/
         Route::resource('group-chat', GroupChatController::class);
+
+        /***************** Map Data Routes ****************/
+        Route::resource('map-data', MapDataController::class);
 
         /***************** Post Routes ****************/
         Route::get('post', [PostController::class, 'index'])->name('post.index');

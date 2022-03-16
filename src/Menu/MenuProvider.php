@@ -210,7 +210,7 @@ class MenuProvider extends ServiceProvider
 
         Menu::make('user', function (MenuItem $menu) {
             $menu->label('avored::system.user')
-            ->type(MenuItem::ADMIN)
+                ->type(MenuItem::ADMIN)
 //                ->icon('users')
                 ->route('#');
         });
@@ -251,6 +251,41 @@ class MenuProvider extends ServiceProvider
                 ->route('admin.group-chat.index');
         });
 
+        /** Map Data menu **/
+        Menu::make('map_data', function (MenuItem $menu) {
+            $menu->label('Map Data')
+                ->type(MenuItem::ADMIN)
+                ->route('#');
+        });
+        $mapDataMenu = Menu::get('map_data');
+        $mapDataMenu->subMenu('ranches_list', function (MenuItem $menu) {
+            $menu->key('ranches_list')
+                ->type(MenuItem::ADMIN)
+                ->label("Ranches List")
+                ->route('admin.map-data.index')
+                ->params("type=ranches");
+        });
+        $mapDataMenu->subMenu('professional_hunting_list', function (MenuItem $menu) {
+            $menu->key('professional_hunting_list')
+                ->type(MenuItem::ADMIN)
+                ->label("Professional Hunting List")
+                ->route('admin.map-data.index')
+                ->params("type=professional_hunting");
+        });
+        $mapDataMenu->subMenu('taxidermy_list', function (MenuItem $menu) {
+            $menu->key('taxidermy_list')
+                ->type(MenuItem::ADMIN)
+                ->label("Taxidermy List")
+                ->route('admin.map-data.index')
+                ->params("type=taxidermy");
+        });
+        $mapDataMenu->subMenu('processing_list', function (MenuItem $menu) {
+            $menu->key('processing_list')
+                ->type(MenuItem::ADMIN)
+                ->label("Processing List")
+                ->route('admin.map-data.index')
+                ->params("type=processing");
+        });
 
 
         Menu::make('system', function (MenuItem $menu) {

@@ -13,6 +13,7 @@ use AvoRed\Framework\Database\Contracts\CustomerModelInterface;
 use AvoRed\Framework\Database\Contracts\DocumentModelInterface;
 use AvoRed\Framework\Database\Contracts\EquipmentModelInterface;
 use AvoRed\Framework\Database\Contracts\GroupChatModelInterface;
+use AvoRed\Framework\Database\Contracts\MapDataModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderProductModelInterface;
 use AvoRed\Framework\Database\Contracts\OrderStatusModelInterface;
@@ -36,6 +37,7 @@ use AvoRed\Framework\Database\Repository\CustomerRepository;
 use AvoRed\Framework\Database\Repository\DocumentRepository;
 use AvoRed\Framework\Database\Repository\EquipmentRepository;
 use AvoRed\Framework\Database\Repository\GroupChatRepository;
+use AvoRed\Framework\Database\Repository\MapDataRepository;
 use AvoRed\Framework\Database\Repository\OrderProductRepository;
 use AvoRed\Framework\Database\Repository\OrderRepository;
 use AvoRed\Framework\Database\Repository\OrderStatusRepository;
@@ -86,6 +88,7 @@ class ModelsProvider extends ServiceProvider
         PostModelInterface::class => PostRepository::class,
         GroupChatModelInterface::class => GroupChatRepository::class,
         ChannelModelInterface::class => ChannelRepository::class,
+        MapDataModelInterface::class => MapDataRepository::class,
     ];
 
     /**
