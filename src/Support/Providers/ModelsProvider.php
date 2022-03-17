@@ -26,6 +26,7 @@ use AvoRed\Framework\Database\Contracts\ReviewModelInterface;
 use AvoRed\Framework\Database\Contracts\RoleModelInterface;
 use AvoRed\Framework\Database\Contracts\SubscriberModelInterface;
 use AvoRed\Framework\Database\Contracts\RecipeModelInterface;
+use AvoRed\Framework\Database\Contracts\UserModelInterface;
 use AvoRed\Framework\Database\Repository\AddressRepository;
 use AvoRed\Framework\Database\Repository\AdminUserRepository;
 use AvoRed\Framework\Database\Repository\AttributeRepository;
@@ -50,6 +51,7 @@ use AvoRed\Framework\Database\Repository\ReviewRepository;
 use AvoRed\Framework\Database\Repository\RoleRepository;
 use AvoRed\Framework\Database\Repository\SubscriberRepository;
 use AvoRed\Framework\Database\Repository\RecipeRepository;
+use AvoRed\Framework\Database\Repository\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class ModelsProvider extends ServiceProvider
@@ -89,6 +91,7 @@ class ModelsProvider extends ServiceProvider
         GroupChatModelInterface::class => GroupChatRepository::class,
         ChannelModelInterface::class => ChannelRepository::class,
         MapDataModelInterface::class => MapDataRepository::class,
+        UserModelInterface::class => UserRepository::class,
     ];
 
     /**
