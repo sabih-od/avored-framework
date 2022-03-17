@@ -16,10 +16,10 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                    name="name"
-                                    autofocus
-                                    value="{!! $item->name ?? '' !!}"
-                                    label="Name"
+                                        name="name"
+                                        autofocus
+                                        value="{!! $item->name ?? '' !!}"
+                                        label="Name"
                                 ></x-avored::form.input>
                             </div>
                         </div>
@@ -29,9 +29,9 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                    name="address"
-                                    value="{{ $item->address ?? '' }}"
-                                    label="Address"
+                                        name="address"
+                                        value="{{ $item->address ?? '' }}"
+                                        label="Address"
                                 ></x-avored::form.input>
                             </div>
                         </div>
@@ -41,12 +41,12 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                    name="rating"
-                                    type="number"
-                                    step="0.1"
+                                        name="rating"
+                                        type="number"
+                                        step="0.1"
 
-                                    value="{{ $item->rating ?? '' }}"
-                                    label="Rating"
+                                        value="{{ $item->rating ?? '' }}"
+                                        label="Rating"
                                 ></x-avored::form.input>
                             </div>
                         </div>
@@ -56,9 +56,9 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                    name="phone"
-                                    value="{{ $item->phone ?? '' }}"
-                                    label="Phone"
+                                        name="phone"
+                                        value="{{ $item->phone ?? '' }}"
+                                        label="Phone"
                                 ></x-avored::form.input>
                             </div>
                         </div>
@@ -68,9 +68,9 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                    name="website"
-                                    value="{{ $item->website ?? '' }}"
-                                    label="Website"
+                                        name="website"
+                                        value="{{ $item->website ?? '' }}"
+                                        label="Website"
                                 ></x-avored::form.input>
                             </div>
                         </div>
@@ -80,12 +80,12 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.select
-                                    name="state_code"
-                                    label="State Code {{ $item->state_code }}">
+                                        name="state_code"
+                                        label="State Code {{ $item->state_code }}">
                                     <option value="">Select State</option>
-                                    @foreach($states as $key => $item)
+                                    @foreach($states as $key => $val)
                                         <option
-                                            value="{{$key}}" {{ ($item->state_code ?? '') == $key ? 'selected': '' }}>{{ ucwords($item) }}
+                                                value="{{$key}}" {{ ($item->state_code ?? '') == $key ? 'selected': '' }}>{{ ucwords($val) }}
                                             ({{strtoupper($key)}})
                                         </option>
                                     @endforeach
@@ -98,11 +98,13 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                    name="image"
-                                    type="file"
-                                    label="Image"
+                                        name="image"
+                                        type="file"
+                                        label="Image"
                                 ></x-avored::form.input>
-                                <img src="{{ $item->media_upload['url'] ?? '' }}" alt=""/>
+                                @if(($item->media_upload['url'] ?? ''))
+                                    <img src="{{ $item->media_upload['url'] ?? '' }}" alt=""/>
+                                @endif
                             </div>
                         </div>
                     </div>

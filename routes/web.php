@@ -106,7 +106,7 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
         /***************** Group Chat Routes ****************/
         Route::resource('group-chat', GroupChatController::class);
 
-        /***************** Map Data Routes ****************/
+        /***************** Map Data Routes {map_datum} ****************/
         Route::resource('map-data', MapDataController::class);
 
         /***************** Post Routes ****************/

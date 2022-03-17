@@ -8,6 +8,7 @@ use AvoRed\Framework\Database\Contracts\ChannelModelInterface;
 use AvoRed\Framework\Database\Contracts\MapDataModelInterface;
 use AvoRed\Framework\Database\Repository\MapDataRepository;
 use AvoRed\Framework\MapData\Requests\CreateRequest;
+use AvoRed\Framework\MapData\Requests\UpdateRequest;
 use Illuminate\Http\Response;
 use \Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -18,8 +19,6 @@ class MapDataController extends Controller
      * @var MapDataModelInterface|MapDataRepository
      */
     protected $repository;
-
-    public static $TYPES = ['ranches', 'professional_hunting', 'taxidermy', 'processing'];
 
     /**
      *
@@ -82,13 +81,12 @@ class MapDataController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param $mapData
+     * @param MapData $map_datum
      * @return Response
      */
-    public function edit($mapData)
+    public function edit(MapData $map_datum)
     {
-        $item = $this->repository->find($mapData);
-        if (is_null($item)) return redirect(route('admin.map-data.index'));
+        $item = $map_datum;
         $type = $item->map_data_type;
         $states = MapData::$states;
         return view('avored::map_data.edit', compact('type', 'states', 'item'));
@@ -97,42 +95,46 @@ class MapDataController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  $request
-     * @param  $group
+     * @param UpdateRequest $request
+     * @param MapData $map_datum
      * @return Response
      */
-    public function update($request, $group_chat)
+    public function update(UpdateRequest $request, MapData $map_datum)
     {
-        $group_chat->update($request->only(['title']));
+        $map_datum->update($request->only([
+            'name',
+            'address',
+            'rating',
+            'phone',
+            'website',
+            'state_code'
+        ]));
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $group_chat->clearMediaCollection('group_chat_upload');
-            $group_chat->addMediaFromRequest('image')->toMediaCollection('group_chat_upload');
+            $map_datum->clearMediaCollection('group_chat_upload');
+            $map_datum->addMediaFromRequest('image')->toMediaCollection('map_data_upload');
         }
 
-        return redirect(route('admin.group-chat.index'));
+        return redirect(route('admin.map-data.index', ['type' => $map_datum->map_data_type]));
     }
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param $mapData
+     * @param MapData $map_datum
      * @return \Illuminate\Http\Response
      */
-    public function destroy($mapData)
+    public function destroy(MapData $map_datum)
     {
-        $data = $this->repository->find($mapData);
-        if (is_null($data)) return redirect(route('admin.map-data.index'));
-        $type = $data->map_data_type;
-        $data->clearMediaCollection('map_data_upload');
-        $data->delete();
-        return redirect(route('admin.map-data.index', ['type' => $type]));
+        $map_datum->clearMediaCollection('map_data_upload');
+        $map_datum->delete();
+        return redirect(route('admin.map-data.index', ['type' => $map_datum->map_data_type]));
     }
 
     private function getTypeInUrl()
     {
-        $types = collect(self::$TYPES);
+        $types = collect(MapData::$TYPES);
         $type = strtolower(request()->get('type', 'ranches'));
         if (!$types->contains($type))
             $type = $types->first();

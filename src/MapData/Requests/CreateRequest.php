@@ -35,7 +35,7 @@ class CreateRequest extends FormRequest
             'website' => ['string'],
             'state_code' => ['required', 'string', Rule::in(array_keys(MapData::$states))],
             'image' => ['image', 'max:3072'],
-            'map_data_type' => ['required', Rule::in(MapDataController::$TYPES)],
+            'map_data_type' => ['required', Rule::in(MapData::$TYPES)],
         ];
     }
 }
