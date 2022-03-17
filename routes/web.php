@@ -17,6 +17,7 @@ use AvoRed\Framework\Recipe\Controllers\RecipeController;
 use AvoRed\Framework\Post\Controllers\PostController;
 use AvoRed\Framework\GroupChat\Controllers\GroupChatController;
 use AvoRed\Framework\MapData\Controllers\MapDataController;
+use AvoRed\Framework\User\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,6 +86,7 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
 
         /***************** USER ROUTES *****************/
         Route::resource('staff', StaffController::class);
+        Route::resource('users', UsersController::class);
         Route::resource('subscriber', SubscriberController::class);
 
 

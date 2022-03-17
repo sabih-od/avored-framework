@@ -230,6 +230,13 @@ class MenuProvider extends ServiceProvider
                 ->label('avored::system.staff')
                 ->route('admin.staff.index');
         });
+
+        $userMenu->subMenu('users_list', function (MenuItem $menu) {
+            $menu->key('users_list')
+                ->type(MenuItem::ADMIN)
+                ->label('Users List')
+                ->route('admin.users.index');
+        });
         // $userMenu->subMenu('subscriber', function (MenuItem $menu) {
         //     $menu->key('subscriber')
         //         ->type(MenuItem::ADMIN)
