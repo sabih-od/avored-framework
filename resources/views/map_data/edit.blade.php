@@ -3,7 +3,7 @@
         <div class="p-5">
             <div class="flex w-full">
                 <h2 class="text-2xl text-red-700 font-semibold">
-                    Edit Group
+                    Edit Map Data
                 </h2>
 
             </div>

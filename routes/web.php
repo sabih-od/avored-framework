@@ -6,9 +6,9 @@ use AvoRed\Framework\Catalog\Controllers\ProductController;
 use AvoRed\Framework\Catalog\Controllers\PropertyController;
 use AvoRed\Framework\Cms\Controllers\PageController;
 use AvoRed\Framework\Equipment\Controllers\EquipmentController;
+use AvoRed\Framework\HowToVideo\Controllers\HowToVideoController;
 use AvoRed\Framework\Order\Controllers\OrderController;
 use AvoRed\Framework\Order\Controllers\OrderStatusController;
-use AvoRed\Framework\System\Controllers\DashboardController;
 use AvoRed\Framework\System\Controllers\RoleController;
 use AvoRed\Framework\User\Controllers\LoginController;
 use AvoRed\Framework\User\Controllers\StaffController;
@@ -110,6 +110,9 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
 
         /***************** Map Data Routes {map_datum} ****************/
         Route::resource('map-data', MapDataController::class);
+
+        /***************** How to video uploads Routes ****************/
+        Route::resource('how-to-video', HowToVideoController::class);
 
         /***************** Post Routes ****************/
         Route::get('post', [PostController::class, 'index'])->name('post.index');

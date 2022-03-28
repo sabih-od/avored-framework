@@ -294,6 +294,20 @@ class MenuProvider extends ServiceProvider
                 ->params("type=processing");
         });
 
+        /** How to video **/
+        Menu::make('how_to_video', function (MenuItem $menu) {
+            $menu->label('How To Video')
+                ->type(MenuItem::ADMIN)
+                ->route('#');
+        });
+        $mapDataMenu = Menu::get('how_to_video');
+        $mapDataMenu->subMenu('how_to_video_list', function (MenuItem $menu) {
+            $menu->key('how_to_video_list')
+                ->type(MenuItem::ADMIN)
+                ->label("List")
+                ->route('admin.how-to-video.index');
+        });
+
 
         Menu::make('system', function (MenuItem $menu) {
             $menu->label('avored::system.system')
