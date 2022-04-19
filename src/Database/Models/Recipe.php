@@ -1,20 +1,26 @@
 <?php
+
 namespace AvoRed\Framework\Database\Models;
 
+use App\Models\Review;
 use AvoRed\Framework\Database\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Recipe extends BaseModel implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
+
     /**
      * Tax Percentage Configuration Constant.
      * @var string
      */
-    
+
     /**
      * The attributes that are mass assignable.
      * @var array
@@ -32,7 +38,10 @@ class Recipe extends BaseModel implements HasMedia
     ];
 
     protected $appends = [
-        'media_upload'
+        'media_upload',
+        'reviews_count',
+        'total_reviews',
+        'auth_review',
     ];
 
     public function user()
@@ -47,5 +56,37 @@ class Recipe extends BaseModel implements HasMedia
             'url' => $mediaItems[0]->getFullUrl(),
             'mime_type' => $mediaItems[0]->mime_type
         ]) : collect([]);
+    }
+
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'reviewable')->whereNull('deleted_at');
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalReviewsAttribute()
+    {
+        return (int)$this->reviews()->sum('rating');
+    }
+
+    /**
+     * @return int
+     */
+    public function getReviewsCountAttribute()
+    {
+        return (int)$this->reviews()->count();
+    }
+
+    /**
+     * @return Collection|null
+     */
+    public function getAuthReviewAttribute()
+    {
+        if (Auth::check()) {
+            return $this->reviews()->where('user_id', Auth::id())->first();
+        }
+        return null;
     }
 }
