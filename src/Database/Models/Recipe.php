@@ -84,8 +84,8 @@ class Recipe extends BaseModel implements HasMedia
      */
     public function getAuthReviewAttribute()
     {
-        if (Auth::check()) {
-            return $this->reviews()->where('user_id', Auth::id())->first();
+        if (Auth::guard('sanctum')->check()) {
+            return $this->reviews()->where('user_id', Auth::guard('sanctum')->id())->first();
         }
         return null;
     }
