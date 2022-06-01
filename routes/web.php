@@ -110,6 +110,7 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
 
         /***************** Map Data Routes {map_datum} ****************/
         Route::resource('map-data', MapDataController::class);
+        Route::post('map-data/search', [MapDataController::class, 'search'])->name('map-data.search');
 
         /***************** How to video uploads Routes ****************/
         Route::resource('how-to-video', HowToVideoController::class);
@@ -131,3 +132,5 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
         Route::post('configuration', [\AvoRed\Framework\System\Controllers\ConfigurationController::class, 'store'])
             ->name('configuration.store');
     });
+
+

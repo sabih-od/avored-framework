@@ -9,6 +9,8 @@ use AvoRed\Framework\Database\Contracts\MapDataModelInterface;
 use AvoRed\Framework\Database\Repository\MapDataRepository;
 use AvoRed\Framework\MapData\Requests\CreateRequest;
 use AvoRed\Framework\MapData\Requests\UpdateRequest;
+use AvoRed\Framework\MapData\Requests\SearchRequest;
+use http\Env\Request;
 use Illuminate\Http\Response;
 use \Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +36,9 @@ class MapDataController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index( )
     {
+
         $type = $this->getTypeInUrl();
         $list = $this->repository->list($type);
         return view('avored::map_data.index', compact('type', 'list'));
@@ -77,6 +80,25 @@ class MapDataController extends Controller
 
         return redirect(route('admin.map-data.index', ['type' => $request->map_data_type]));
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param SearchRequest $request
+     * @return Response
+     */
+    public function search(SearchRequest $request)
+    {
+        $entry =$request->only([
+            'search',
+        ]);
+
+        $type = $this->getTypeInUrl();
+        $list = $this->repository->search($type,$entry["search"]);
+        return view('avored::map_data.index', compact('type', 'list'));
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.

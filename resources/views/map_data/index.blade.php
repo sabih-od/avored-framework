@@ -1,4 +1,4 @@
-<x-avored::layout>
+ <x-avored::layout>
     <div>
         <div class="p-5">
             <div class="flex w-full">
@@ -12,12 +12,33 @@
                 </x-avored::link>
             </span>
             </div>
+            <div class="w-1/3 ">
+                <div class="mt-3 " >
 
+                    <x-avored::form.form action="{{ route('admin.map-data.search') }} " style="display: flex;align-items: center;gap: 0 1.25rem; " class=""
+                                         method="Post">
+                        <x-avored::form.input
+                            name="search"
+                            autofocus
+                            value=""
+
+                        ></x-avored::form.input>
+                        <button type="submit" style="">
+                            Search
+                        </button>
+                        <x-avored::link url="{{ route('admin.map-data.index', ['type' => $type]) }} "  style="button-primary">
+                            Cancel
+                        </x-avored::link>
+                    </x-avored::form.form>
+
+                </div>
+            </div>
             <div class="w-full mt-5">
                 {{ $list->render() }}
 
                 <div class="overflow-x-auto">
-                    <x-avored::table>
+                    <x-avored::table
+                    >
                         <x-slot name="header">
                             <x-avored::table.row class="bg-gray-300">
                                 <x-avored::table.header>
