@@ -28,7 +28,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', Rule::unique('map_data')->whereNull('deleted_at')->ignore($this->map_datum)],
+            'name' => ['required', 'string'/*, Rule::unique('map_data')->whereNull('deleted_at')->ignore($this->map_datum)*/],
             'address' => ['required', 'string'],
             'rating' => ['required', 'numeric', 'between:0,5'],
             'phone' => ['min:3', 'max:30'],
