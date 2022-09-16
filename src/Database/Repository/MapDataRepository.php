@@ -33,15 +33,22 @@ class MapDataRepository extends BaseRepository implements MapDataModelInterface
         return $this->model;
     }
 
-    public function list($type,$search=null)
+    public function list($type, $search = null, $state = null)
     {
-        if($search==null){
+        if ($search == null and $state == null) {
 
             return $this->model::where('map_data_type', $type)->paginate();
-        }
-        else{
-            return $this->model::where('map_data_type',$type)->where('name',$search)->paginate();
+        } else {
+            $data = $this->model::where('map_data_type', $type);
+            $data = $data->where('name', 'like', '%' . $search . '%');
+
+            if (trim($state)) {
+                $data = $data->where('state_code', $state);
+            }
+
+            return $data->paginate();
         }
     }
+
 
 }

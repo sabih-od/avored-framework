@@ -1,3 +1,18 @@
+<style>
+    .pagination {
+        padding: 1rem 0 2rem;
+    }
+    .pagination p {
+        font-size: 1rem;
+        font-weight: 100;
+        color: rgba(75,85,99,var(--tw-text-opacity));
+    }
+
+    .pagination p span {
+        font-weight: 600;
+    }
+
+</style>
 <x-avored::layout>
     <div>
         <div class="p-5">
@@ -12,32 +27,37 @@
                 </x-avored::link>
             </span>
             </div>
+
             <div class="w-1/3 ">
                 <div class="mt-3 ">
 
                     <form action="{{ route('admin.map-data.index') }} "
                                          style="display: flex;align-items: center;gap: 0 1.25rem; " class=""
                                          method="get">
-                        <input id="search" type="text" name="search" value="{{request()->get('search','')}}" autofocus="autofocus" class="avored-input  ">
-
+                        <input id="search" type="text" name="search" value="{{request()->get('search','')}}" autofocus="autofocus" class="avored-input" placeholder="Search By Name">
+                        <input id="search_state" type="text" name="search_state" value="{{request()->get('search_state','')}}" autofocus="autofocus" class="avored-input" placeholder="Search By State">
                         <input type="hidden" name="type" value="{{$type}}">
-                        <button type="submit" style="">
+                        <button type="submit" style="" class="submit">
                             Search
                         </button>
-                        <a href="{{ route('admin.map-data.index', ['type' => $type]) }} "
-                                        style="button-primary">
+                        <a href="{{ route('admin.map-data.index', ['type' => $type]) }} "  style="button-primary">
                             Cancel
                         </a>
                     </form>
 
                 </div>
             </div>
+
             <div class="w-full mt-5">
-                {{ $list->render() }}
+                <div class="flex justify-between w-full pagination">
+                <p>Total Records: <span>{{$list->total()}}</span></p>
+                <p>Total no. of Pages: <span>{{$list->lastPage()}}</span></p>
+                <p>Current Page: <span>{{$list->currentPage()}}</span></p>
+                </div>
+                {{ $list->appends(request()->query())->links() }}
 
                 <div class="overflow-x-auto">
-                    <x-avored::table
-                    >
+                    <x-avored::table>
                         <x-slot name="header">
                             <x-avored::table.row class="bg-gray-300">
                                 <x-avored::table.header>
@@ -54,14 +74,15 @@
                                 </x-avored::table.header>
                             </x-avored::table.row>
                         </x-slot>
-                        <x-slot name="body">
+                        <x-slot name="body" id="">
                             @foreach ($list as $item)
-                                <x-avored::table.row class="">
+                                <x-avored::table.row class="" id="">
                                     <x-avored::table.cell>
+
                                         {{ $item->id }}
                                     </x-avored::table.cell>
 
-                                    <x-avored::table.cell>
+                                    <x-avored::table.cell >
                                         {{ $item->name }}
                                     </x-avored::table.cell>
 
@@ -88,7 +109,17 @@
                         </x-slot>
                     </x-avored::table>
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
+
+
 </x-avored::layout>
+
+
+
+

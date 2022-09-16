@@ -18,11 +18,11 @@
                 <div>
                     <a href="https://avored.com" target="_blank">
                         <img class="mx-auto h-12 w-auto"
-                            src="{{ asset('/vendor/avored/images/logo_only.svg') }}"
+                            src="{{ asset('assets/images/udpate-logo.png') }}"
                             alt="AvoRed Ecommerce" />
                     </a>
                     <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-                        {{ __('avored::system.login_to_avored_admin') }}
+                        Login to Admin Panel
                     </h2>
                     <p class="mt-2 text-center text-sm leading-5 text-gray-600 max-w">
                     </p>

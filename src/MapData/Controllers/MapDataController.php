@@ -13,6 +13,8 @@ use Illuminate\Http\Response;
 use \Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use DB;
+use function Couchbase\defaultDecoder;
 
 class MapDataController extends Controller
 {
@@ -39,9 +41,14 @@ class MapDataController extends Controller
     {
 
         $search=$request->get('search');
+        $state = $request->get('search_state');
         $type = $this->getTypeInUrl();
-        $list = $this->repository->list($type,$search);
-        return view('avored::map_data.index', compact('type', 'list'));
+        $list = $this->repository->list($type, $search, $state);
+        //dd($list);
+//        $pagination = DB::table('map_data')->simplePaginate(15);
+        $users = DB::table('map_data')->simplePaginate();
+        //dd($users);
+        return view('avored::map_data.index', compact('type', 'list', 'users'));
     }
 
     /**
@@ -122,7 +129,6 @@ class MapDataController extends Controller
         return redirect(route('admin.map-data.index', ['type' => $map_datum->map_data_type]));
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
@@ -134,6 +140,7 @@ class MapDataController extends Controller
         $map_datum->clearMediaCollection('map_data_upload');
         $map_datum->delete();
         return redirect(route('admin.map-data.index', ['type' => $map_datum->map_data_type]));
+        //return redirect()->back();
     }
 
     private function getTypeInUrl()

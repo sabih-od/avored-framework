@@ -3,8 +3,8 @@
     :class="isSideBarOpen ? 'lg:w-64 z-10' : 'lg:w-16'"
     x-transition.duration.300ms>
     <div class="bg-white text-red-700 h-16 p-2 flex items-center shadow">
-        <img class="h-8 w-8 ml-4" src="{{ asset('/vendor/avored/images/logo_only.svg') }}" alt="AvoRed Ecommerce" />
-        <span class="font-bold ml-2">Social Hunter</span>
+        <img class="h-8 w-8 ml-4" src="{{ asset('assets/images/udpate-logo.png') }}" alt="AvoRed Ecommerce" />
+        <span class="font-bold ml-2">Hunter Social</span>
     </div>
 
     <div class="space-x-8 p-2 overflow-hidden">
