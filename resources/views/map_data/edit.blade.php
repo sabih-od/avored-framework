@@ -114,12 +114,6 @@
                                 class="flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700">
                             Update
                         </button>
-                        <x-avored::form.form action="{{ route('admin.map-data.destroy', $item) }}"
-                                             method="DELETE">
-                            <button type="submit" class="ml-3 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700">
-                                Delete
-                            </button>
-                        </x-avored::form.form>
                         <x-avored::link url="{{ route('admin.map-data.index', ['type' => $type]) }}" class="ml-3"
                                         style="button-default">
                             Cancel
