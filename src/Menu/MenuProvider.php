@@ -340,5 +340,27 @@ class MenuProvider extends ServiceProvider
                 ->route('admin.role.index');
         });
 
+        // admin.settings.index
+        Menu::make('settings', function (MenuItem $menu) {
+            $menu->key('settings')
+                ->type(MenuItem::ADMIN)
+                ->label('Settings')
+                ->route('#');
+        });
+        $settingMenu = Menu::get('settings');
+
+        $settingMenu->subMenu('payments', function (MenuItem $menu) {
+            $menu->key('payments')
+                ->type(MenuItem::ADMIN)
+                ->label('Payments')
+                ->route('admin.settings.payments');
+        });
+
+        $settingMenu->subMenu('contact', function (MenuItem $menu) {
+            $menu->key('contact')
+                ->type(MenuItem::ADMIN)
+                ->label('Contact Page')
+                ->route('admin.settings.contact');
+        });
     }
 }
