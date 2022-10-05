@@ -131,6 +131,18 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
             ->name('configuration.index');
         Route::post('configuration', [\AvoRed\Framework\System\Controllers\ConfigurationController::class, 'store'])
             ->name('configuration.store');
+
+
+        /***************** SETTINGS ROUTES *****************/
+        Route::get('settings/payments', [\AvoRed\Framework\System\Controllers\SettingsController::class, 'payments'])
+            ->name('settings.payments');
+        Route::post('settings/payments', [\AvoRed\Framework\System\Controllers\SettingsController::class, 'paymentsUpdate'])
+            ->name('settings.payments.update');
+
+        Route::get('settings/contact', [\AvoRed\Framework\System\Controllers\SettingsController::class, 'contact'])
+            ->name('settings.contact');
+        Route::post('settings/contact', [\AvoRed\Framework\System\Controllers\SettingsController::class, 'contactUpdate'])
+            ->name('settings.contact.update');
     });
 
 
