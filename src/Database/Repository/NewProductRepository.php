@@ -61,7 +61,7 @@ class NewProductRepository extends BaseRepository implements NewProductModelInte
 
     public function list()
     {
-        $products = _Product::paginate();
+        $products = _Product::with('user')->paginate();
 
         return $products;
     }

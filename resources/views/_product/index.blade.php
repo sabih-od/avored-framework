@@ -72,6 +72,15 @@
                                 Title
                             </x-avored::table.header>
                             <x-avored::table.header>
+                                User Name
+                            </x-avored::table.header>
+                            <x-avored::table.header>
+                                User Phone Number
+                            </x-avored::table.header>
+                            <x-avored::table.header>
+                                User Email
+                            </x-avored::table.header>
+                            <x-avored::table.header>
                                 Price
                             </x-avored::table.header>
                             <x-avored::table.header>
@@ -103,6 +112,18 @@
                                 </x-avored::table.cell>
 
                                 <x-avored::table.cell>
+                                    {{ $_product->user->name ?? '' }}
+                                </x-avored::table.cell>
+
+                                <x-avored::table.cell>
+                                    {{ $_product->user->phone }}
+                                </x-avored::table.cell>
+
+                                <x-avored::table.cell>
+                                    {{ $_product->user->email }}
+                                </x-avored::table.cell>
+
+                                <x-avored::table.cell>
                                     {{ $_product->price }}
                                 </x-avored::table.cell>
 
@@ -119,7 +140,7 @@
                                 </x-avored::table.cell>
 
                                 <x-avored::table.cell>
-                                    {{ $_product->category->name }}
+                                    {{ $_product->category->name ?? '' }}
                                 </x-avored::table.cell>
 
                                 <x-avored::table.cell>
