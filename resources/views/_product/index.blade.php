@@ -127,8 +127,11 @@
 {{--                                        <x-avored::link url="{{ route('admin.category.edit', $_product) }}">--}}
 {{--                                            <i class="fa fa-pencil"></i>--}}
 {{--                                        </x-avored::link>--}}
-                                        <x-avored::form.form action="{{ route('admin.category.destroy', $_product) }}"
+                                        <x-avored::form.form action="{{ route('admin.new_product.destroy', $_product) }}"
                                                              method="DELETE">
+{{--                                            @php--}}
+{{--                                                dd(route('admin.new_product.destroy', $_product));--}}
+{{--                                            @endphp--}}
                                             <button class=" ml-3"
                                                     type="submit"><i class="fa fa-trash"></i>
                                             </button>

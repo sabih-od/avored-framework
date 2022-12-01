@@ -97,9 +97,10 @@ class NewProductController extends Controller
      * @param Recipe $product
      * @return mixed
      */
-    public function destroy(_Product $_product)
+    public function destroy(_Product $_product, $id)
     {
-        $_product->delete();
+        _Product::findOrFail($id)->delete();
+//        $_product->delete();
         return redirect(route('admin.new_product.index'));
     }
 }

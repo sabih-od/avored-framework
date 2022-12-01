@@ -96,9 +96,10 @@ class NewCategoryController extends Controller
      * @param Recipe $category
      * @return mixed
      */
-    public function destroy(_Category $_category)
+    public function destroy(_Category $_category, $id)
     {
-        $_category->delete();
+        _Category::findOrFail($id)->delete();
+//        $_category->delete();
         return redirect(route('admin.new_category.index'));
     }
 }
