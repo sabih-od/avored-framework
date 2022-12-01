@@ -167,6 +167,28 @@ class MenuProvider extends ServiceProvider
                 ->route('admin.recipe.index');
         });
 
+        Menu::make('category', function (MenuItem $menu) {
+            $menu->key('category')->label('Marketplace Categories')->type(MenuItem::ADMIN)->route('#');
+        });
+        $recipeMenu = Menu::get('category');
+        $recipeMenu->subMenu('category_list', function (MenuItem $menu) {
+            $menu->key('category_list')
+                ->type(MenuItem::ADMIN)
+                ->label('Marketplace Categories List')
+                ->route('admin.new_category.index');
+        });
+
+        Menu::make('product', function (MenuItem $menu) {
+            $menu->key('product')->label('Marketplace Products')->type(MenuItem::ADMIN)->route('#');
+        });
+        $recipeMenu = Menu::get('product');
+        $recipeMenu->subMenu('product_list', function (MenuItem $menu) {
+            $menu->key('product_list')
+                ->type(MenuItem::ADMIN)
+                ->label('Marketplace Products List')
+                ->route('admin.new_product.index');
+        });
+
         Menu::make('equipment', function (MenuItem $menu) {
             $menu->key('equipment')->label('Equipment')->type(MenuItem::ADMIN)->route('#');
         });
