@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('meta_title', 'AvoRed E commerce')</title>
+    <title>@yield('meta_title', 'Admin Panel | Hunters Social')</title>
 
     <link rel="stylesheet" href="{{ asset('vendor/avored/css/app.css') }}"></link>
 </head>
