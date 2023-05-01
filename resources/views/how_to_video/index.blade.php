@@ -26,6 +26,9 @@
                                 <x-avored::table.header>
                                     Title
                                 </x-avored::table.header>
+                                <x-avored::table.header>
+                                    Review
+                                </x-avored::table.header>
                                 <x-avored::table.header class="rounded-tr">
                                     Actions
                                 </x-avored::table.header>
@@ -40,6 +43,10 @@
 
                                     <x-avored::table.cell>
                                         {{ $item->title }}
+                                    </x-avored::table.cell>
+
+                                    <x-avored::table.cell>
+                                        {{ $item->status == 0 ? 'In Review': 'Published' }}
                                     </x-avored::table.cell>
 
                                     <x-avored::table.cell>

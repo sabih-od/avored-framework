@@ -30,9 +30,11 @@ class HowToVideoController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $entry = $this->repository->create($request->only([
-            'title'
-        ]));
+        $data = $request->only([
+            'title',
+        ]);
+        $data['status'] = 1;
+        $entry = $this->repository->create($data);
 
         if ($request->hasFile('video') && $request->file('video')->isValid()) {
             $entry->addMediaFromRequest('video')->toMediaCollection('how_to_video_upload');
@@ -49,9 +51,13 @@ class HowToVideoController extends Controller
 
     public function update(UpdateRequest $request, HowToVideo $how_to_video)
     {
-        $how_to_video->update($request->only([
+        $data = $request->only([
             'title'
-        ]));
+        ]);
+        if ($request->has('status')) {
+            $data['status'] = 1;
+        }
+        $how_to_video->update($data);
 
         if ($request->hasFile('video') && $request->file('video')->isValid()) {
             $how_to_video->clearMediaCollection('how_to_video_upload');

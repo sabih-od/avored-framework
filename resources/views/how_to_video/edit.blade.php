@@ -16,10 +16,10 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                        name="title"
-                                        autofocus
-                                        value="{!! $item->title ?? '' !!}"
-                                        label="Title"
+                                    name="title"
+                                    autofocus
+                                    value="{!! $item->title ?? '' !!}"
+                                    label="Title"
                                 ></x-avored::form.input>
                             </div>
                         </div>
@@ -29,13 +29,23 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                        name="video"
-                                        type="file"
-                                        label="Video"
+                                    name="video"
+                                    type="file"
+                                    label="Video"
                                 ></x-avored::form.input>
                                 @if(($item->media_upload['url'] ?? ''))
                                     <video controls src="{{ $item->media_upload['url'] ?? '' }}" alt=""/>
                                 @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex w-full">
+                        <div class="w-1/2">
+                            <div class="mt-3 mb-3">
+                                <input type="checkbox" id="_status" name="status"
+                                       value="1" {{ $item->status ? 'checked': '' }}>
+                                <label for="_status">&nbsp;&nbsp;Publish</label>
                             </div>
                         </div>
                     </div>
