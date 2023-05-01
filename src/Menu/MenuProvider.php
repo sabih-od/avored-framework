@@ -362,6 +362,22 @@ class MenuProvider extends ServiceProvider
                 ->route('admin.role.index');
         });
 
+        // Reported menu
+        Menu::make('reported', function (MenuItem $menu) {
+            $menu->key('reported')
+                ->type(MenuItem::ADMIN)
+                ->label('Reported')
+                ->route('#');
+        });
+        $reportedMenu = Menu::get('reported');
+
+        $reportedMenu->subMenu('list', function (MenuItem $menu) {
+            $menu->key('list')
+                ->type(MenuItem::ADMIN)
+                ->label('List')
+                ->route('admin.reported.index');
+        });
+
         // admin.settings.index
         Menu::make('settings', function (MenuItem $menu) {
             $menu->key('settings')

@@ -140,6 +140,14 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
         Route::post('configuration', [\AvoRed\Framework\System\Controllers\ConfigurationController::class, 'store'])
             ->name('configuration.store');
 
+        /*************** REPORTED ROUTES ****************/
+        Route::group(['prefix' => 'reported', 'as' => 'reported.'], function() {
+            Route::get('/', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'index'])
+                ->name('index');
+            Route::delete('/{reported}', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'destroy'])
+                ->name('destroy');
+        });
+
 
         /***************** SETTINGS ROUTES *****************/
         Route::get('settings/payments', [\AvoRed\Framework\System\Controllers\SettingsController::class, 'payments'])
