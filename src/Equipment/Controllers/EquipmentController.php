@@ -2,6 +2,7 @@
 
 namespace AvoRed\Framework\Equipment\Controllers;
 
+use App\Models\Review;
 use AvoRed\Framework\Database\Contracts\EquipmentModelInterface;
 use AvoRed\Framework\Database\Contracts\ReviewModelInterface;
 use AvoRed\Framework\Database\Models\Equipment;
@@ -11,6 +12,7 @@ use AvoRed\Framework\Equipment\Requests\EquipmentUpdateRequest;
 use Illuminate\Http\Response;
 use \Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class EquipmentController extends Controller
 {
@@ -98,6 +100,13 @@ class EquipmentController extends Controller
         }
 
         return redirect(route('admin.equipment.index'));
+    }
+
+    public function updateStatus(Request $request, Review $review)
+    {
+        $review->status = !$review->status;
+        $review->save();
+        return redirect()->back();
     }
 
 

@@ -23,7 +23,8 @@ class Equipment extends BaseModel implements HasMedia
      */
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'status'
     ];
 
     protected $hidden = [

@@ -111,6 +111,7 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
 
         /***************** Equipment Routes ****************/
         Route::resource('equipment', EquipmentController::class);
+        Route::put('equipment-review/{review}', [EquipmentController::class, 'updateStatus'])->name('equipment-review.status-update');
         Route::delete('equipment-review/{id}', [EquipmentController::class, 'deleteReview'])->name('equipment-review.delete');
 
         /***************** Group Chat Routes ****************/

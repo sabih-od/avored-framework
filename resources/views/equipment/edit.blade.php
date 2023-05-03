@@ -16,10 +16,10 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                        name="title"
-                                        autofocus
-                                        value="{!! $equipment->title ?? '' !!}"
-                                        label="Title"
+                                    name="title"
+                                    autofocus
+                                    value="{!! $equipment->title ?? '' !!}"
+                                    label="Title"
                                 ></x-avored::form.input>
                             </div>
                         </div>
@@ -29,10 +29,10 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <textarea
-                                        class="avored-input"
-                                        rows="5"
-                                        name="content"
-                                        label="Content"
+                                    class="avored-input"
+                                    rows="5"
+                                    name="content"
+                                    label="Content"
                                 >{{ $equipment->content ?? '' }}</textarea>
                             </div>
                         </div>
@@ -42,9 +42,9 @@
                         <div class="w-1/2">
                             <div class="mt-3">
                                 <x-avored::form.input
-                                        name="image"
-                                        type="file"
-                                        label="Image"
+                                    name="image"
+                                    type="file"
+                                    label="Image"
                                 ></x-avored::form.input>
                                 <img src="{{ $equipment->media_upload['url'] ?? '' }}" alt=""/>
                             </div>
@@ -90,12 +90,24 @@
                                 <span class="fa fa-star {{ $review->rating == 5 ? 'checked': 'd-none' }}"></span>
                             </div>
                             <p>{{ $review->content }}</p>
-                            <x-avored::form.form action="{{ route('admin.equipment-review.delete', $review->id) }}"
-                                                 method="DELETE">
-                                <button class="bg-red-500 text-white px-2 py-1 rounded shadow-sm hover:bg-red-600 text-xs"
+                            <div class="flex">
+                                <x-avored::form.form class="flex-1"
+                                                     action="{{ route('admin.equipment-review.delete', $review->id) }}"
+                                                     method="DELETE">
+                                    <button
+                                        class="bg-red-500 text-white px-2 py-1 rounded shadow-sm hover:bg-red-600 text-xs"
                                         type="submit">Delete
-                                </button>
-                            </x-avored::form.form>
+                                    </button>
+                                </x-avored::form.form>
+                                <x-avored::form.form class="flex-1"
+                                                     action="{{ route('admin.equipment-review.status-update', $review->id) }}"
+                                                     method="PUT">
+                                    <button
+                                        class="bg-red-500 text-white px-2 py-1 rounded shadow-sm hover:bg-red-600 text-xs"
+                                        type="submit">{{ $review->status ? 'Published': 'Publish'  }}
+                                    </button>
+                                </x-avored::form.form>
+                            </div>
                         </div>
                     </div>
                 @empty

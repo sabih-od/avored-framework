@@ -54,6 +54,7 @@ class HowToVideoController extends Controller
         $data = $request->only([
             'title'
         ]);
+        $data['status'] = 0;
         if ($request->has('status')) {
             $data['status'] = 1;
         }
