@@ -79,7 +79,9 @@ class EquipmentController extends Controller
      */
     public function edit(Equipment $equipment)
     {
-        return view('avored::equipment.edit')->with('equipment', $equipment);
+        $equipment = $equipment;
+        $reviews = $equipment->reviews()->orderByDesc('created_at')->paginate(1);
+        return view('avored::equipment.edit')->with(compact('equipment', 'reviews'));
     }
 
     /**

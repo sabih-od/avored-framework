@@ -74,7 +74,7 @@
             </div>
 
             <div class="mt-5 w-full">
-                @forelse($equipment->reviews as $review)
+                @forelse($reviews as $review)
                     <div class="userReview mb-3">
                         <img src="{{ url('storage/uploads/'.$review->user->profile_image) }}"
                              onerror="event.target.src=`{{ url('assets/images/ph-avatar.jpg') }}`"
@@ -110,6 +110,11 @@
                             </div>
                         </div>
                     </div>
+                    @if($reviews->hasPages())
+                        <div class="mt-3">
+                            {{ $reviews->links() }}
+                        </div>
+                    @endif
                 @empty
                     <p>No Reviews</p>
                 @endforelse
