@@ -371,11 +371,28 @@ class MenuProvider extends ServiceProvider
         });
         $reportedMenu = Menu::get('reported');
 
-        $reportedMenu->subMenu('list', function (MenuItem $menu) {
-            $menu->key('list')
+        $reportedMenu->subMenu('user', function (MenuItem $menu) {
+            $menu->key('user')
                 ->type(MenuItem::ADMIN)
-                ->label('List')
-                ->route('admin.reported.index');
+                ->label('Users')
+                ->route('admin.reported.index')
+                ->params('user');
+        });
+
+        $reportedMenu->subMenu('post', function (MenuItem $menu) {
+            $menu->key('post')
+                ->type(MenuItem::ADMIN)
+                ->label('Posts')
+                ->route('admin.reported.index')
+                ->params('post');
+        });
+
+        $reportedMenu->subMenu('comment', function (MenuItem $menu) {
+            $menu->key('comment')
+                ->type(MenuItem::ADMIN)
+                ->label('Comments')
+                ->route('admin.reported.index')
+                ->params('comment');
         });
 
         // admin.settings.index

@@ -143,7 +143,7 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
 
         /*************** REPORTED ROUTES ****************/
         Route::group(['prefix' => 'reported', 'as' => 'reported.'], function() {
-            Route::get('/', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'index'])
+            Route::get('/{type}', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'index'])
                 ->name('index');
             Route::delete('/{reported}', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'destroy'])
                 ->name('destroy');

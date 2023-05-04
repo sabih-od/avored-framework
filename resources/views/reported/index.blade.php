@@ -3,17 +3,20 @@
         <div class="p-5">
             <div class="flex w-full">
                 <h2 class="text-2xl text-red-700 font-semibold">
-                    Reported
+                    Reported ({{ $title }})
                 </h2>
-                {{--            <span class="ml-auto">--}}
-                {{--                <x-avored::link url="{{ route('admin.recipe.create') }}" style="button-primary">--}}
-                {{--                    Create--}}
-                {{--                </x-avored::link>--}}
-                {{--            </span>--}}
+                <div class="ml-auto">
+                    <x-avored::link url="#" style="button-primary" class="mr-2">
+                        Deleted
+                    </x-avored::link>
+                    <x-avored::link url="#" style="button-primary">
+                        Ignored
+                    </x-avored::link>
+                </div>
             </div>
 
             <div class="w-full mt-5">
-            {{ $reported->render() }}
+            {{--            {{ $reported->render() }}--}}
             <!-- <form action="{{ route('admin.order.filter') }}" method="POST"> -->
             <!-- @csrf -->
             <!-- {{ csrf_field() }} -->
@@ -62,65 +65,15 @@
 
                 <!-- component -->
                 <div class="overflow-x-auto">
-                    <x-avored::table>
-                        <x-slot name="header">
-                            <x-avored::table.row class="bg-gray-300">
-                                <x-avored::table.header>
-                                    Reported By User
-                                </x-avored::table.header>
-                                <x-avored::table.header>
-                                    Reason
-                                </x-avored::table.header>
-                                <x-avored::table.header>
-                                    Item Type
-                                </x-avored::table.header>
-                                <x-avored::table.header>
-                                    Item ID
-                                </x-avored::table.header>
-                                <x-avored::table.header class="rounded-tr">
-                                    Actions
-                                </x-avored::table.header>
-                            </x-avored::table.row>
-                        </x-slot>
-                        <x-slot name="body">
-                            @foreach ($reported as $item)
-                                <x-avored::table.row class="">
-                                    <x-avored::table.cell>
-                                        {{ $item->user->name }} ({{$item->user->email}})
-                                    </x-avored::table.cell>
-                                    <x-avored::table.cell>
-                                        {{ $item->reason }}
-                                    </x-avored::table.cell>
-                                    <x-avored::table.cell>
-                                        {{ $item->reportable_type }}
-                                    </x-avored::table.cell>
-                                    <x-avored::table.cell>
-                                        {{ $item->reportable_id }}
-                                    </x-avored::table.cell>
-
-                                    <x-avored::table.cell>
-                                        <div class="flex">
-                                            @if(array_search($item->reportable_type, \App\Http\Requests\ReportedCreateRequest::types()) === 'user')
-                                                <x-avored::link url="#" title="Deactivate User">
-                                                    <i class="fa fa-ban" aria-hidden="true"></i>
-                                                </x-avored::link>
-                                            @endif
-                                            <x-avored::form.form action="{{ route('admin.reported.destroy', $item) }}"
-                                                                 method="DELETE">
-                                                <button class=" ml-3"
-                                                        title="Clear Report"
-                                                        type="submit"><i class="fa fa-trash"></i>
-                                                </button>
-                                            </x-avored::form.form>
-                                        </div>
-                                    </x-avored::table.cell>
-
-                                </x-avored::table.row>
-                            @endforeach
-                        </x-slot>
-                    </x-avored::table>
+                    @if($type == 'user')
+                        @include('avored::reported.user-table')
+                    @elseif($type == 'post')
+                        @include('avored::reported.post-table')
+                    @elseif($type == 'comment')
+                        @include('avored::reported.comment-table')
+                    @endif
                     <div class="w-full">
-                        {{ $reported->links() }}
+                        {{ $data->links() }}
                     </div>
                 </div>
             </div>
