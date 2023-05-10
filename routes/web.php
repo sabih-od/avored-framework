@@ -145,6 +145,11 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
         Route::group(['prefix' => 'reported', 'as' => 'reported.'], function() {
             Route::get('/{type}', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'index'])
                 ->name('index');
+            Route::get('/{type}/view/{id}', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'itemShow'])
+                ->name('item.show');
+            Route::delete('/{type}/view/{id}', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'itemDestroy'])
+                ->name('item.destroy');
+
             Route::delete('/{reported}', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'destroy'])
                 ->name('destroy');
         });

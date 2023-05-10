@@ -18,31 +18,62 @@ use Illuminate\Support\Str;
 class ReportedController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index(Request $request, $type)
     {
+        $q = $request->get('q');
+        $is_query = in_array($q, ['deleted', 'ignored']);
+
         $models = ReportedCreateRequest::types();
         if (!array_key_exists($type, $models))
             return abort(404);
         $title = Str::ucfirst(Str::plural($type));
-        $data = ($models[$type])::whereHas('reported')->withCount(['reported'])->paginate();
-//        dd($data);
-//        $reported = Reported::query()->orderByDesc('created_at')->paginate(10);
-        return view('avored::reported.index', compact('data', 'title', 'type'));
+
+        if ($is_query) {
+            if ($q == 'deleted') {
+                $data = ($models[$type])::withTrashed()
+                    ->whereNotNull('deleted_at')
+                    ->whereHas('reported')
+                    ->withCount('reported')
+                    ->paginate();
+            } elseif ($q == 'ignored') {
+                $data = ($models[$type])::whereHas('reportedIgnored')->withCount(['reportedIgnored'])->paginate();
+            }
+        } else {
+            $data = ($models[$type])::whereHas('reported')->withCount(['reported'])->paginate();
+        }
+
+        return view('avored::reported.index', compact('data', 'title', 'type', 'is_query', 'q'));
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public function show($id)
+    public function itemShow($type, $id)
     {
-        $item = $this->repository->find($id);
-        return view('avored::post.show')->with('post', $item);
+        $models = ReportedCreateRequest::types();
+        if (!array_key_exists($type, $models))
+            return abort(404);
+
+        $item = ($models[$type])::find($id);
+        if (is_null($item))
+            return abort(404);
+
+        $title = Str::ucfirst($type);
+        $report_list = $item->reported()->with(['user'])->paginate();
+
+        return view('avored::reported.show', compact('item', 'report_list', 'type', 'title'));
+    }
+
+    public function itemDestroy($type, $id)
+    {
+        $models = ReportedCreateRequest::types();
+        if (!array_key_exists($type, $models))
+            return abort(404);
+
+        $item = ($models[$type])::find($id);
+        if (is_null($item))
+            return abort(404);
+
+        $item->delete();
+
+        return back();
     }
 
     /**
@@ -53,7 +84,7 @@ class ReportedController extends Controller
     {
         $reported->delete();
 
-        return redirect(route('admin.reported.index'));
+        return back();
     }
 
     public function commentDestroy($post, $comment)

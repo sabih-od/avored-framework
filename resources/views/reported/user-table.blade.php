@@ -10,12 +10,12 @@
             <x-avored::table.header>
                 Email
             </x-avored::table.header>
-            <x-avored::table.header>
-                Total Reported
-            </x-avored::table.header>
-            <x-avored::table.header class="rounded-tr">
-                Actions
-            </x-avored::table.header>
+            @include('avored::reported.reported-count-header')
+            @if(!$is_query)
+                <x-avored::table.header class="rounded-tr">
+                    Actions
+                </x-avored::table.header>
+            @endif
         </x-avored::table.row>
     </x-slot>
     <x-slot name="body">
@@ -30,24 +30,14 @@
                 <x-avored::table.cell>
                     {{ $item->email }}
                 </x-avored::table.cell>
-                <x-avored::table.cell>
-                    {{ $item->reported_count }}
-                </x-avored::table.cell>
 
-                <x-avored::table.cell>
-                    <div class="flex">
-                        <x-avored::link url="#" title="Delete User">
-                            <i class="fa fa-ban" aria-hidden="true"></i>
-                        </x-avored::link>
-                        <x-avored::form.form action="{{ route('admin.reported.destroy', $item) }}"
-                                             method="DELETE">
-                            <button class=" ml-3"
-                                    title="Clear Report"
-                                    type="submit"><i class="fa fa-trash"></i>
-                            </button>
-                        </x-avored::form.form>
-                    </div>
-                </x-avored::table.cell>
+                @include('avored::reported.reported-count-cell')
+
+                @if(!$is_query)
+                    <x-avored::table.cell>
+                        @include('avored::reported.model-item-actions')
+                    </x-avored::table.cell>
+                @endif
 
             </x-avored::table.row>
         @endforeach

@@ -3,36 +3,21 @@
         <div class="p-5">
             <div class="flex w-full">
                 <h2 class="text-2xl text-red-700 font-semibold">
-                    Reported{{$is_query ? " ".\Illuminate\Support\Str::ucfirst($q): ''}} ({{ $title }})
+                    Reported ({{ $title }})
                 </h2>
-                @if($is_query)
-                    <div class="ml-auto">
-                        <x-avored::link url="{{ route('admin.reported.index', $type) }}" style="button-primary"
-                                        class="mr-2">
-                            Back
-                        </x-avored::link>
-                    </div>
-                @else
-                    <div class="ml-auto">
-                        <x-avored::link url="{{ route('admin.reported.index', $type) }}?q=deleted"
-                                        style="button-primary" class="mr-2">
-                            Deleted
-                        </x-avored::link>
-                        <x-avored::link url="{{ route('admin.reported.index', $type) }}?q=ignored"
-                                        style="button-primary">
-                            Ignored
-                        </x-avored::link>
-                    </div>
-                @endif
-
+                <div class="ml-auto">
+                    <x-avored::link url="{{ route('admin.reported.index', $type) }}" style="button-primary" class="mr-2">
+                        Back
+                    </x-avored::link>
+                </div>
             </div>
 
             <div class="w-full mt-5">
             {{--            {{ $reported->render() }}--}}
-            {{--            <!-- <form action="{{ route('admin.order.filter') }}" method="POST"> -->--}}
-            {{--            <!-- @csrf -->--}}
-            {{--            <!-- {{ csrf_field() }} -->--}}
-            <!-- <div class="flex flex-wrap -mx-3 mb-6">
+{{--            <!-- <form action="{{ route('admin.order.filter') }}" method="POST"> -->--}}
+{{--            <!-- @csrf -->--}}
+{{--            <!-- {{ csrf_field() }} -->--}}
+                <!-- <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="flex w-full">
                         <input
                             class="mr-2 appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -77,15 +62,10 @@
 
                 <!-- component -->
                 <div class="overflow-x-auto">
-                    @if($type == 'user')
-                        @include('avored::reported.user-table')
-                    @elseif($type == 'post')
-                        @include('avored::reported.post-table')
-                    @elseif($type == 'comment')
-                        @include('avored::reported.comment-table')
-                    @endif
+                    @include('avored::reported.reported-table')
+
                     <div class="w-full">
-                        {{ $data->links() }}
+                        {{ $report_list->links() }}
                     </div>
                 </div>
             </div>
