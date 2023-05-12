@@ -154,6 +154,15 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
                 ->name('destroy');
         });
 
+        /*************** EMAIL SUBSCRIPTION ROUTES ****************/
+        Route::group(['prefix' => 'email-subscription', 'as' => 'email-subscription.'], function() {
+            Route::get('/', [\AvoRed\Framework\EmailSubscription\Controllers\EmailSubscriptionController::class, 'index'])
+                ->name('index');
+
+            Route::delete('/{email_sub}', [\AvoRed\Framework\EmailSubscription\Controllers\EmailSubscriptionController::class, 'destroy'])
+                ->name('destroy');
+        });
+
 
         /***************** SETTINGS ROUTES *****************/
         Route::get('settings/payments', [\AvoRed\Framework\System\Controllers\SettingsController::class, 'payments'])

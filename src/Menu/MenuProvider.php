@@ -395,6 +395,22 @@ class MenuProvider extends ServiceProvider
                 ->params('comment');
         });
 
+        // Email Subscription menu
+        Menu::make('email-subscription', function (MenuItem $menu) {
+            $menu->key('email-subscription')
+                ->type(MenuItem::ADMIN)
+                ->label('Email Subscriptions')
+                ->route('#');
+        });
+        $emailSubscriptionMenu = Menu::get('email-subscription');
+
+        $emailSubscriptionMenu->subMenu('list', function (MenuItem $menu) {
+            $menu->key('list')
+                ->type(MenuItem::ADMIN)
+                ->label('List')
+                ->route('admin.email-subscription.index');
+        });
+
         // admin.settings.index
         Menu::make('settings', function (MenuItem $menu) {
             $menu->key('settings')
