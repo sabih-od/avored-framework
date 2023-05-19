@@ -57,10 +57,10 @@ class EquipmentRepository extends BaseRepository implements EquipmentModelInterf
 
     public function list()
     {
-        $recipes = $this->model::/*with([
+        $list = $this->model::/*with([
             'user'
         ])->*/paginate();
 
-        return $recipes;
+        return $list;
     }
 }

@@ -80,7 +80,7 @@ class EquipmentController extends Controller
     public function edit(Equipment $equipment)
     {
         $equipment = $equipment;
-        $reviews = $equipment->reviews()->orderByDesc('created_at')->paginate(1);
+        $reviews = $equipment->reviews()->orderByDesc('created_at')->paginate(20);
         return view('avored::equipment.edit')->with(compact('equipment', 'reviews'));
     }
 

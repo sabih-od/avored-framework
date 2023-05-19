@@ -21,6 +21,7 @@ use AvoRed\Framework\User\Controllers\UsersController;
 use AvoRed\Framework\_Category\Controllers\NewCategoryController;
 use AvoRed\Framework\_Product\Controllers\NewProductController;
 use Illuminate\Support\Facades\Route;
+use AvoRed\Framework\Equipment\Controllers\EquipmentVideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +111,14 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
         Route::resource('new_product', NewProductController::class);
 
         /***************** Equipment Routes ****************/
+        Route::group(['prefix' => 'equipment/{id}/videos', 'as' => 'equipment.videos.'], function () {
+            Route::get('/', [EquipmentVideoController::class, 'index'])->name('index');
+            Route::get('create', [EquipmentVideoController::class, 'create'])->name('create');
+            Route::post('create', [EquipmentVideoController::class, 'store'])->name('store');
+            Route::get('edit/{video_id}', [EquipmentVideoController::class, 'edit'])->name('edit');
+            Route::put('edit/{video_id}', [EquipmentVideoController::class, 'update'])->name('update');
+            Route::delete('/{video_id}', [EquipmentVideoController::class, 'destroy'])->name('destroy');
+        });
         Route::resource('equipment', EquipmentController::class);
         Route::put('equipment-review/{review}', [EquipmentController::class, 'updateStatus'])->name('equipment-review.status-update');
         Route::delete('equipment-review/{id}', [EquipmentController::class, 'deleteReview'])->name('equipment-review.delete');
@@ -142,7 +151,7 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
             ->name('configuration.store');
 
         /*************** REPORTED ROUTES ****************/
-        Route::group(['prefix' => 'reported', 'as' => 'reported.'], function() {
+        Route::group(['prefix' => 'reported', 'as' => 'reported.'], function () {
             Route::get('/{type}', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'index'])
                 ->name('index');
             Route::get('/{type}/view/{id}', [\AvoRed\Framework\Reported\Controllers\ReportedController::class, 'itemShow'])
@@ -155,7 +164,7 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
         });
 
         /*************** EMAIL SUBSCRIPTION ROUTES ****************/
-        Route::group(['prefix' => 'email-subscription', 'as' => 'email-subscription.'], function() {
+        Route::group(['prefix' => 'email-subscription', 'as' => 'email-subscription.'], function () {
             Route::get('/', [\AvoRed\Framework\EmailSubscription\Controllers\EmailSubscriptionController::class, 'index'])
                 ->name('index');
 
