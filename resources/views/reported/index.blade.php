@@ -83,6 +83,8 @@
                         @include('avored::reported.post-table')
                     @elseif($type == 'comment')
                         @include('avored::reported.comment-table')
+                    @elseif($type == 'recipe')
+                        @include('avored::reported.recipe-table')
                     @endif
                     <div class="w-full">
                         {{ $data->links() }}

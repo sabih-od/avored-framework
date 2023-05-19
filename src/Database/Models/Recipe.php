@@ -3,10 +3,12 @@
 namespace AvoRed\Framework\Database\Models;
 
 use App\Models\Review;
+use App\Traits\ReportedRelationTrait;
 use AvoRed\Framework\Database\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
@@ -14,7 +16,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Recipe extends BaseModel implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, InteractsWithMedia, ReportedRelationTrait, SoftDeletes;
 
     /**
      * Tax Percentage Configuration Constant.
@@ -42,6 +44,7 @@ class Recipe extends BaseModel implements HasMedia
         'reviews_count',
         'total_reviews',
         'auth_review',
+        'is_reported',
     ];
 
     public function user()

@@ -395,6 +395,14 @@ class MenuProvider extends ServiceProvider
                 ->params('comment');
         });
 
+        $reportedMenu->subMenu('recipe', function (MenuItem $menu) {
+            $menu->key('recipe')
+                ->type(MenuItem::ADMIN)
+                ->label('Recipes')
+                ->route('admin.reported.index')
+                ->params('recipe');
+        });
+
         // Email Subscription menu
         Menu::make('email-subscription', function (MenuItem $menu) {
             $menu->key('email-subscription')
