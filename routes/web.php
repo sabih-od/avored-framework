@@ -172,6 +172,12 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
                 ->name('destroy');
         });
 
+        /*************** BLOCK USERS ROUTES ****************/
+        Route::group(['prefix' => 'block-users', 'as' => 'block-users.'], function () {
+            Route::get('/', [\AvoRed\Framework\BlockUsers\Controllers\BlockUsers::class, 'index'])
+                ->name('index');
+        });
+
 
         /***************** SETTINGS ROUTES *****************/
         Route::get('settings/payments', [\AvoRed\Framework\System\Controllers\SettingsController::class, 'payments'])

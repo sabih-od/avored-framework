@@ -45,7 +45,12 @@ class SettingsController extends Controller
             'location' => $request->location,
             'email' => $request->email,
             'phone' => $request->phone,
-            'map_link' => $request->map_link
+            'map_link' => $request->map_link,
+            'copyrights' => $request->copyrights,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'twitter' => $request->twitter,
+            'pinterest' => $request->pinterest,
         ];
 
         if (is_null($setting)) {

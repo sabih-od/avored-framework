@@ -35,6 +35,31 @@
                                 value="{{ $setting->map_link ?? '' }}"
                                 label="Map Link"
                         ></x-avored::form.input>
+                        <x-avored::form.input
+                                name="copyrights"
+                                value="{{ $setting->copyrights ?? '' }}"
+                                label="Copyrights"
+                        ></x-avored::form.input>
+                        <x-avored::form.input
+                                name="facebook"
+                                value="{{ $setting->facebook ?? '' }}"
+                                label="Facebook Link"
+                        ></x-avored::form.input>
+                        <x-avored::form.input
+                                name="instagram"
+                                value="{{ $setting->instagram ?? '' }}"
+                                label="Instagram Link"
+                        ></x-avored::form.input>
+                        <x-avored::form.input
+                                name="twitter"
+                                value="{{ $setting->twitter ?? '' }}"
+                                label="Twitter Link"
+                        ></x-avored::form.input>
+                        <x-avored::form.input
+                                name="pinterest"
+                                value="{{ $setting->pinterest ?? '' }}"
+                                label="Pinterest Link"
+                        ></x-avored::form.input>
 
                         <div class="mt-6 flex">
                             <button type="submit"

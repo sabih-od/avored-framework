@@ -419,6 +419,22 @@ class MenuProvider extends ServiceProvider
                 ->route('admin.email-subscription.index');
         });
 
+        // Block users list menu
+        Menu::make('block-users', function (MenuItem $menu) {
+            $menu->key('block-users')
+                ->type(MenuItem::ADMIN)
+                ->label('Block Users')
+                ->route('#');
+        });
+        $emailSubscriptionMenu = Menu::get('block-users');
+
+        $emailSubscriptionMenu->subMenu('list', function (MenuItem $menu) {
+            $menu->key('list')
+                ->type(MenuItem::ADMIN)
+                ->label('List')
+                ->route('admin.block-users.index');
+        });
+
         // admin.settings.index
         Menu::make('settings', function (MenuItem $menu) {
             $menu->key('settings')
