@@ -3,6 +3,7 @@
 use AvoRed\Framework\Catalog\Controllers\AttributeController;
 use AvoRed\Framework\Catalog\Controllers\CategoryController;
 use AvoRed\Framework\Catalog\Controllers\ProductController;
+use AvoRed\Framework\Catalog\Controllers\ProductReviewController;
 use AvoRed\Framework\Catalog\Controllers\PropertyController;
 use AvoRed\Framework\Cms\Controllers\PageController;
 use AvoRed\Framework\Equipment\Controllers\EquipmentController;
@@ -82,10 +83,13 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
 
         /***************** CATALOG ROUTES *****************/
         Route::resource('category', CategoryController::class);
-        Route::resource('property', PropertyController::class);
-        Route::resource('attribute', AttributeController::class);
+//        Route::resource('property', PropertyController::class);
+//        Route::resource('attribute', AttributeController::class);
         Route::resource('product', ProductController::class);
-
+//        Route::resource('product-review', ProductReviewController::class);
+        Route::get('product-review', [ProductReviewController::class, 'index'])->name('product-review.index');
+        Route::get('product-review/{review}/{status}', [ProductReviewController::class, 'update'])->name('product-review.update-status');
+        Route::delete('product-review/{review}', [ProductReviewController::class, 'destroy'])->name('product-review.destroy');
 
         /***************** USER ROUTES *****************/
         Route::resource('staff', StaffController::class);

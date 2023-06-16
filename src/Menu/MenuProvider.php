@@ -84,19 +84,25 @@ class MenuProvider extends ServiceProvider
                 ->label('avored::system.category')
                 ->route('admin.category.index');
         });
-        $catalogMenu->subMenu('property', function (MenuItem $menu) {
-            $menu->key('property')
+        $catalogMenu->subMenu('product-reviews', function (MenuItem $menu) {
+            $menu->key('product-reviews')
                 ->type(MenuItem::ADMIN)
-                ->label('avored::system.property')
-                ->route('admin.property.index');
+                ->label('Reviews')
+                ->route('admin.product-review.index');
         });
-
-        $catalogMenu->subMenu('attribute', function (MenuItem $menu) {
-            $menu->key('attribute')
-                ->type(MenuItem::ADMIN)
-                ->label('avored::system.attribute')
-                ->route('admin.attribute.index');
-        });
+//        $catalogMenu->subMenu('property', function (MenuItem $menu) {
+//            $menu->key('property')
+//                ->type(MenuItem::ADMIN)
+//                ->label('avored::system.property')
+//                ->route('admin.property.index');
+//        });
+//
+//        $catalogMenu->subMenu('attribute', function (MenuItem $menu) {
+//            $menu->key('attribute')
+//                ->type(MenuItem::ADMIN)
+//                ->label('avored::system.attribute')
+//                ->route('admin.attribute.index');
+//        });
 
         // Menu::make('cms', function (MenuItem $menu) {
         //     $menu->label('avored::system.cms')
