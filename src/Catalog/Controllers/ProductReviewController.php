@@ -17,7 +17,10 @@ class ProductReviewController extends Controller
 {
     public function index()
     {
-        $reviews = ProductReview::query()->with(['user', 'product'])->paginate();
+        $reviews = ProductReview::query()
+            ->whereHas('user')
+            ->whereHas('product')
+            ->with(['user', 'product'])->paginate();
         return view('avored::catalog.review.index')
             ->with('reviews', $reviews);
     }
