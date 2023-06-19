@@ -40,7 +40,7 @@ class MapDataController extends Controller
     public function index(Request $request)
     {
 
-        $search=$request->get('search');
+        $search = $request->get('search');
         $state = $request->get('search_state');
         $type = $this->getTypeInUrl();
         $list = $this->repository->list($type, $search, $state);

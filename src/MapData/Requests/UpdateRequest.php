@@ -31,8 +31,8 @@ class UpdateRequest extends FormRequest
             'name' => ['required', 'string'/*, Rule::unique('map_data')->whereNull('deleted_at')->ignore($this->map_datum)*/],
             'address' => ['required', 'string'],
             'rating' => ['required', 'numeric', 'between:0,5'],
-            'phone' => ['min:3', 'max:30'],
-            'website' => ['string'],
+            'phone' => ['nullable', 'min:3', 'max:30'],
+            'website' => ['nullable', 'string'],
             'state_code' => ['required', 'string', Rule::in(array_keys(MapData::$states))],
             'image' => ['image', 'max:3072']
         ];
