@@ -41,7 +41,7 @@ class UserRepository extends BaseRepository implements UserModelInterface
      */
     public function list()
     {
-        $users = $this->model::query()->latest('created_at')->paginate();
+        $users = $this->model::query()->latest()->paginate();
 
         return $users;
     }
