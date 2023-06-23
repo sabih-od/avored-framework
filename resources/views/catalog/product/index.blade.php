@@ -18,7 +18,7 @@
                 <x-avored::table>
                     <x-slot name="header">
                         <x-avored::table.row class="bg-gray-300">
-                            
+
                             <x-avored::table.header>
                                 {{ __('avored::system.name') }}
                             </x-avored::table.header>
@@ -126,7 +126,7 @@
                     </svg>
                     <h2 class="text-xl font-bold py-4 ">
                         {{ __('avored::system.are_you_sure') }}
-                    </h3>
+                    </h2>
                     <p class="text-sm text-gray-500 px-8" x-html="message">
 
 
