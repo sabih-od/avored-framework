@@ -22,6 +22,9 @@
                                 <x-avored::table.header>
                                     Email
                                 </x-avored::table.header>
+                                <x-avored::table.header>
+                                    Is Lifetime
+                                </x-avored::table.header>
                                 <x-avored::table.header class="rounded-tr">
                                     Action
                                 </x-avored::table.header>
@@ -38,6 +41,9 @@
                                     </x-avored::table.cell>
                                     <x-avored::table.cell>
                                         {{ $user->email ?? '' }}
+                                    </x-avored::table.cell>
+                                    <x-avored::table.cell>
+                                        {{ $user->is_lifetime_access ? 'Yes': 'No' }}
                                     </x-avored::table.cell>
                                     <x-avored::table.cell>
                                         <div class="flex">
