@@ -143,4 +143,8 @@ class Customer extends BaseModel
     {
         // <!-- return $this->morphMany(OrderComment::class, 'commentable'); -->
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
