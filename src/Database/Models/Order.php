@@ -62,7 +62,9 @@ class Order extends BaseModel
      */
     public function products()
     {
+
         return $this->hasMany(OrderProduct::class);
+
     }
 
     /**

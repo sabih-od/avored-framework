@@ -145,6 +145,8 @@ class Customer extends BaseModel
     }
     public function orders()
     {
+
         return $this->hasMany(Order::class);
+
     }
 }
