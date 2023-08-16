@@ -65,6 +65,20 @@ class HowToVideoController extends Controller
             $how_to_video->addMediaFromRequest('video')->toMediaCollection('how_to_video_upload');
         }
 
+        if ($request->has('video_thumbnail')) {
+
+            if (empty($request->video_thumbnail)) {
+
+                $how_to_video->clearMediaCollection('how_to_video_thumbnail');
+
+            } else {
+                $thumbnailData = $request->input('video_thumbnail');
+                $how_to_video->clearMediaCollection('how_to_video_thumbnail');
+                $how_to_video->addMediaFromBase64($thumbnailData)->toMediaCollection('how_to_video_thumbnail');
+            }
+
+        }
+
         return redirect(route('admin.how-to-video.index'));
     }
 
