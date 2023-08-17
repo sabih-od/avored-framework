@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="w-1/2" style="display: flex; align-items: flex-end ; padding: 10px 10px 0px 10px">
-                            @if(($item->media_upload['thumbnail_url'] ?? ''))
+                            @if($thumbnail_img)
 
                                 <button
                                     style="background-color: #7f8c8d ;"
@@ -67,12 +67,13 @@
                         </div>
                     </div>
 
-                    <input type="hidden" name="video_thumbnail" id="videoThumbnail">
+                    <input type="hidden" name="video_thumbnail" id="videoThumbnail"
+                           value="{{ $thumbnail_img ? '1': null }}">
 
-{{--                                        @if(($item->media_upload['thumbnail_url'] ?? ''))--}}
-{{--                                            <img style="width: 20%; margin-top: 2%" src="{{ $item->media_upload['thumbnail_url'] ?? '' }}"--}}
-{{--                                                 alt=""/>--}}
-{{--                                        @endif--}}
+                    @if($thumbnail_img)
+                        <img id="thumbPreview" style="width: 20%; margin-top: 2%" src="{{ $thumbnail_img }}"
+                             alt=""/>
+                    @endif
 
                     <div class="flex w-full">
                         <div class="w-1/2">
@@ -142,7 +143,7 @@
 
         // Get the image data as a URL
         const imageDataUrl = canvas.toDataURL('image/png');
-        console.log("imageDataUrl", imageDataUrl)
+        // console.log("imageDataUrl", imageDataUrl)
 
         // Set the image data in the hidden input
         document.getElementById('videoThumbnail').value = imageDataUrl;
@@ -158,7 +159,12 @@
 
         const videoThumbnailInput = document.getElementById('videoThumbnail');
         videoThumbnailInput.value = '';
-        console.log("videoThumbnailInput", videoThumbnailInput.value)
+
+        const thumbPreview = document.getElementById('thumbPreview')
+        if (thumbPreview)
+            thumbPreview.remove()
+
+        // console.log("videoThumbnailInput", videoThumbnailInput.value)
         // Hide the "Remove Thumbnail" button
         document.getElementById('removeThumbnail').style.display = 'none';
 
