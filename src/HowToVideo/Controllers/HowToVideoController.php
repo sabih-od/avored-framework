@@ -46,7 +46,8 @@ class HowToVideoController extends Controller
     public function edit(HowToVideo $how_to_video)
     {
         $item = $how_to_video;
-        return view('avored::how_to_video.edit', compact('item'));
+        $thumbnail_img = $item->getFirstMediaUrl('how_to_video_thumbnail');
+        return view('avored::how_to_video.edit', compact('item', 'thumbnail_img'));
     }
 
     public function update(UpdateRequest $request, HowToVideo $how_to_video)
@@ -63,6 +64,19 @@ class HowToVideoController extends Controller
         if ($request->hasFile('video') && $request->file('video')->isValid()) {
             $how_to_video->clearMediaCollection('how_to_video_upload');
             $how_to_video->addMediaFromRequest('video')->toMediaCollection('how_to_video_upload');
+        }
+
+
+        if ($request->has('video_thumbnail')) {
+
+            if (empty($request->video_thumbnail)) {
+                $how_to_video->clearMediaCollection('how_to_video_thumbnail');
+            } elseif($request->video_thumbnail !== '1') {
+                $thumbnailData = $request->input('video_thumbnail');
+                $how_to_video->clearMediaCollection('how_to_video_thumbnail');
+                $how_to_video->addMediaFromBase64($thumbnailData)->toMediaCollection('how_to_video_thumbnail');
+            }
+
         }
 
         return redirect(route('admin.how-to-video.index'));
