@@ -1,22 +1,22 @@
 <x-avored::layout>
-<div>
-    <div class="p-5">
-        <div class="flex w-full">
-            <h2 class="text-2xl text-red-700 font-semibold">
-                Products
-            </h2>
-{{--            <span class="ml-auto">--}}
-{{--                <x-avored::link url="{{ route('admin.category.create') }}" style="button-primary">--}}
-{{--                    Create--}}
-{{--                </x-avored::link>--}}
-{{--            </span>--}}
-        </div>
+    <div>
+        <div class="p-5">
+            <div class="flex w-full">
+                <h2 class="text-2xl text-red-700 font-semibold">
+                    Products
+                </h2>
+                {{--            <span class="ml-auto">--}}
+                {{--                <x-avored::link url="{{ route('admin.category.create') }}" style="button-primary">--}}
+                {{--                    Create--}}
+                {{--                </x-avored::link>--}}
+                {{--            </span>--}}
+            </div>
 
-        <div class="w-full mt-5">
-        {{ $_products->render() }}
+            <div class="w-full mt-5">
+            {{ $_products->render() }}
             <!-- <form action="{{ route('admin.order.filter') }}" method="POST"> -->
-                <!-- @csrf  -->
-                <!-- {{ csrf_field() }} -->
+            <!-- @csrf -->
+            <!-- {{ csrf_field() }} -->
                 <!-- <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="flex w-full">
                         <input
@@ -58,117 +58,118 @@
                         <button type="submit" class="shadow bg-red-500 hover:bg-red-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">Filter</button>
                     </div>
                 </div> -->
-            <!-- </form> -->
+                <!-- </form> -->
 
-            <!-- component -->
-            <div class="overflow-x-auto">
-                <x-avored::table>
-                    <x-slot name="header">
-                        <x-avored::table.row class="bg-gray-300">
-                            <x-avored::table.header>
-                                Image
-                            </x-avored::table.header>
-                            <x-avored::table.header>
-                                Title
-                            </x-avored::table.header>
-                            <x-avored::table.header>
-                                User Name
-                            </x-avored::table.header>
-                            <x-avored::table.header>
-                                User Phone Number
-                            </x-avored::table.header>
-                            <x-avored::table.header>
-                                User Email
-                            </x-avored::table.header>
-                            <x-avored::table.header>
-                                Price
-                            </x-avored::table.header>
-                            <x-avored::table.header>
-                                Description
-                            </x-avored::table.header>
-                            <x-avored::table.header>
-                                Zipcode
-                            </x-avored::table.header>
-                            <x-avored::table.header>
-                                Condition
-                            </x-avored::table.header>
-                            <x-avored::table.header>
-                                Category
-                            </x-avored::table.header>
-                            <x-avored::table.header class="rounded-tr">
-                                Actions
-                            </x-avored::table.header>
-                        </x-avored::table.row>
-                    </x-slot>
-                    <x-slot name="body">
-                        @foreach ($_products as $_product)
-                            <x-avored::table.row class="">
-                                <x-avored::table.cell>
-                                    <img src="{{$_product->get_first_image()}}" width="200" alt="">
-                                </x-avored::table.cell>
-
-                                <x-avored::table.cell>
-                                    {{ $_product->title }}
-                                </x-avored::table.cell>
-
-                                <x-avored::table.cell>
-                                    {{ $_product->user->name ?? '' }}
-                                </x-avored::table.cell>
-
-                                <x-avored::table.cell>
-                                    {{ $_product->user->phone }}
-                                </x-avored::table.cell>
-
-                                <x-avored::table.cell>
-                                    {{ $_product->user->email }}
-                                </x-avored::table.cell>
-
-                                <x-avored::table.cell>
-                                    {{ $_product->price }}
-                                </x-avored::table.cell>
-
-                                <x-avored::table.cell>
-                                    {{ $_product->description }}
-                                </x-avored::table.cell>
-
-                                <x-avored::table.cell>
-                                    {{ $_product->zipcode }}
-                                </x-avored::table.cell>
-
-                                <x-avored::table.cell>
-                                    {{ $_product->condition }}
-                                </x-avored::table.cell>
-
-                                <x-avored::table.cell>
-                                    {{ $_product->category->name ?? '' }}
-                                </x-avored::table.cell>
-
-                                <x-avored::table.cell>
-                                    <div class="flex">
-{{--                                        <x-avored::link url="{{ route('admin.category.edit', $_product) }}">--}}
-{{--                                            <i class="fa fa-pencil"></i>--}}
-{{--                                        </x-avored::link>--}}
-                                        <x-avored::form.form action="{{ route('admin.new_product.destroy', $_product) }}"
-                                                             method="DELETE">
-{{--                                            @php--}}
-{{--                                                dd(route('admin.new_product.destroy', $_product));--}}
-{{--                                            @endphp--}}
-                                            <button class=" ml-3"
-                                                    type="submit"><i class="fa fa-trash"></i>
-                                            </button>
-                                        </x-avored::form.form>
-                                    </div>
-                                </x-avored::table.cell>
-
+                <!-- component -->
+                <div class="overflow-x-auto">
+                    <x-avored::table>
+                        <x-slot name="header">
+                            <x-avored::table.row class="bg-gray-300">
+                                <x-avored::table.header>
+                                    Image
+                                </x-avored::table.header>
+                                <x-avored::table.header>
+                                    Title
+                                </x-avored::table.header>
+                                <x-avored::table.header>
+                                    User Name
+                                </x-avored::table.header>
+                                <x-avored::table.header>
+                                    User Phone Number
+                                </x-avored::table.header>
+                                <x-avored::table.header>
+                                    User Email
+                                </x-avored::table.header>
+                                <x-avored::table.header>
+                                    Price
+                                </x-avored::table.header>
+                                <x-avored::table.header>
+                                    Description
+                                </x-avored::table.header>
+                                <x-avored::table.header>
+                                    Zipcode
+                                </x-avored::table.header>
+                                <x-avored::table.header>
+                                    Condition
+                                </x-avored::table.header>
+                                <x-avored::table.header>
+                                    Category
+                                </x-avored::table.header>
+                                <x-avored::table.header class="rounded-tr">
+                                    Actions
+                                </x-avored::table.header>
                             </x-avored::table.row>
-                        @endforeach
-                    </x-slot>
-                </x-avored::table>
-                <div class="w-full">
+                        </x-slot>
+                        <x-slot name="body">
+                            @foreach ($_products as $_product)
+                                <x-avored::table.row class="">
+                                    <x-avored::table.cell>
+                                        <img src="{{$_product->get_first_image()}}" width="200" alt="">
+                                    </x-avored::table.cell>
 
+                                    <x-avored::table.cell>
+                                        {{ $_product->title ?? ''}}
+                                    </x-avored::table.cell>
+
+                                    <x-avored::table.cell>
+                                        {{ $_product->user->name ?? '' }}
+                                    </x-avored::table.cell>
+
+                                    <x-avored::table.cell>
+                                        {{ $_product->user->phone ?? ''}}
+                                    </x-avored::table.cell>
+
+                                    <x-avored::table.cell>
+                                        {{ $_product->user->email ?? ''}}
+                                    </x-avored::table.cell>
+
+                                    <x-avored::table.cell>
+                                        {{ $_product->price ?? ''}}
+                                    </x-avored::table.cell>
+
+                                    <x-avored::table.cell>
+                                        {{ $_product->description ?? ''}}
+                                    </x-avored::table.cell>
+
+                                    <x-avored::table.cell>
+                                        {{ $_product->zipcode ?? ''}}
+                                    </x-avored::table.cell>
+
+                                    <x-avored::table.cell>
+                                        {{ $_product->condition ?? ''}}
+                                    </x-avored::table.cell>
+
+                                    <x-avored::table.cell>
+                                        {{ $_product->category->name ?? '' }}
+                                    </x-avored::table.cell>
+
+                                    <x-avored::table.cell>
+                                        <div class="flex">
+                                            {{--                                        <x-avored::link url="{{ route('admin.category.edit', $_product) }}">--}}
+                                            {{--                                            <i class="fa fa-pencil"></i>--}}
+                                            {{--                                        </x-avored::link>--}}
+                                            <x-avored::form.form
+                                                action="{{ route('admin.new_product.destroy', $_product) }}"
+                                                method="DELETE">
+                                                {{--                                            @php--}}
+                                                {{--                                                dd(route('admin.new_product.destroy', $_product));--}}
+                                                {{--                                            @endphp--}}
+                                                <button class=" ml-3"
+                                                        type="submit"><i class="fa fa-trash"></i>
+                                                </button>
+                                            </x-avored::form.form>
+                                        </div>
+                                    </x-avored::table.cell>
+
+                                </x-avored::table.row>
+                            @endforeach
+                        </x-slot>
+                    </x-avored::table>
+                    <div class="w-full">
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </x-avored::layout>

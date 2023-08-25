@@ -77,7 +77,7 @@
                         @foreach ($_categories as $_category)
                             <x-avored::table.row class="">
                                 <x-avored::table.cell>
-                                    {{ $_category->name }}
+                                    {{ $_category->name ?? ''}}
                                 </x-avored::table.cell>
 
                                 <x-avored::table.cell>
