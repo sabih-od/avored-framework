@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use App\Models\User;
+use App\Models\Interest;
+use App\Models\Notification;
 
 class Recipe extends BaseModel implements HasMedia
 {
@@ -92,5 +94,15 @@ class Recipe extends BaseModel implements HasMedia
             return $this->reviews()->where('user_id', Auth::guard('sanctum')->id())->first();
         }
         return null;
+    }
+
+    public function interests()
+    {
+        return $this->morphToMany(Interest::class, 'interestable', 'model_interests');
+    }
+
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notificationable');
     }
 }
