@@ -86,6 +86,3 @@
         <script src="{{ asset('vendor/avored/js/v-app.js')  }}"></script>
     @endpush
 </x-avored::layout>
-
-
-

@@ -33,7 +33,8 @@ class Equipment extends BaseModel implements HasMedia
     ];
 
     protected $appends = [
-        'media_upload'
+        'media_upload',
+        'thumbnail'
     ];
 
     public function getMediaUploadAttribute()
@@ -43,6 +44,11 @@ class Equipment extends BaseModel implements HasMedia
             'url' => $mediaItems[0]->getFullUrl(),
             'mime_type' => $mediaItems[0]->mime_type
         ]) : collect([]);
+    }
+
+    public function getThumbnailAttribute()
+    {
+        return $this->getFirstMediaUrl('how_to_video_thumbnail');
     }
 
 

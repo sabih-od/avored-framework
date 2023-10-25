@@ -18,6 +18,7 @@ class Order extends BaseModel
         'shipping_address_id',
         'billing_address_id',
         'track_code',
+        'paid_amount'
     ];
 
     /**
