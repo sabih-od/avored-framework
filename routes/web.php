@@ -23,6 +23,7 @@ use AvoRed\Framework\_Category\Controllers\NewCategoryController;
 use AvoRed\Framework\_Product\Controllers\NewProductController;
 use Illuminate\Support\Facades\Route;
 use AvoRed\Framework\Equipment\Controllers\EquipmentVideoController;
+use AvoRed\Framework\AdminChatMessage\Controllers\AdminChatMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -193,6 +194,9 @@ Route::middleware(['web', 'admin.auth:admin', 'permission'])
             ->name('settings.contact');
         Route::post('settings/contact', [\AvoRed\Framework\System\Controllers\SettingsController::class, 'contactUpdate'])
             ->name('settings.contact.update');
+
+        /***************** Admin Chat Message Routes ****************/
+        Route::resource('admin-chat-message', AdminChatMessageController::class);
     });
 
 

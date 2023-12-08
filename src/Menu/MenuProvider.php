@@ -440,6 +440,22 @@ class MenuProvider extends ServiceProvider
                 ->label('List')
                 ->route('admin.block-users.index');
         });
+        
+        // Admin Chat Message list menu
+        Menu::make('admin-chat-message', function (MenuItem $menu) {
+            $menu->key('admin-chat-message')
+                ->type(MenuItem::ADMIN)
+                ->label('Admin Chat Message')
+                ->route('#');
+        });
+        $adminChatMessageMenu = Menu::get('admin-chat-message');
+
+        $adminChatMessageMenu->subMenu('list', function (MenuItem $menu) {
+            $menu->key('list')
+                ->type(MenuItem::ADMIN)
+                ->label('List')
+                ->route('admin.admin-chat-message.index');
+        });
 
         // admin.settings.index
         Menu::make('settings', function (MenuItem $menu) {
