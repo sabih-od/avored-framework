@@ -23,7 +23,10 @@ class BlockUsers extends Controller
 
     public function index(Request $request)
     {
-        $data = BlockUser::query()->with(['blockedUserDetail', 'blockedByUserDetail'])->paginate();
+        $data = BlockUser::query()->with(['blockedUserDetail', 'blockedByUserDetail'])
+            ->whereHas('blockedUserDetail')
+            ->whereHas('blockedByUserDetail')
+            ->paginate();
 
         return view('avored::block_users.index', compact('data'));
     }
